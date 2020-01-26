@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlaneController : MonoBehaviour
 {
+    public static PlaneController instance;
+
     [SerializeField] GameObject plane;
     [SerializeField] GameObject horizontalLever;
     [SerializeField] GameObject verticalLever;
@@ -33,10 +35,10 @@ public class PlaneController : MonoBehaviour
 
     private void Update()
     {
-        Buttons();
+        Move();
     }
 
-    private void Buttons()
+    private void Move()
     {
         if (accelerateButton)
             moveForward();
