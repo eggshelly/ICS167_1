@@ -33,8 +33,12 @@ public class PlaneController : MonoBehaviour
 
     private void Update()
     {
-        print(m_planerb.velocity);
+        Test();
 
+    }
+
+    private void Test()
+    {
         if (isForward)
             moveForward();
         if (isRight)
