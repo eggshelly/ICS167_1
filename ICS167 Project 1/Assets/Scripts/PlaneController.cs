@@ -16,11 +16,11 @@ public class PlaneController : MonoBehaviour
     
 
     //TEST
-    public bool isForward;
-    public bool isRight;
-    public bool isLeft;
-    public bool isUp;
-    public bool isDown;
+    public bool accelerateButton;
+    public bool hLeverRight;
+    public bool hLeverLeft;
+    public bool vLeverUp;
+    public bool vLeverDown;
     
     private void Awake()
     {
@@ -33,21 +33,20 @@ public class PlaneController : MonoBehaviour
 
     private void Update()
     {
-        Test();
-
+        Buttons();
     }
 
-    private void Test()
+    private void Buttons()
     {
-        if (isForward)
+        if (accelerateButton)
             moveForward();
-        if (isRight)
+        if (hLeverRight)
             tiltRight();
-        if (isLeft)
+        if (hLeverLeft)
             tiltLeft();
-        if (isUp)
+        if (vLeverUp)
             tiltUp();
-        if (isDown)
+        if (vLeverDown)
             tiltDown();
     }
 
