@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public enum Hand
 {
@@ -8,37 +9,33 @@ public enum Hand
     Right
 }
 
-public class GManager : MonoBehaviour
+public class GManager : NetworkBehaviour
 {
-    public static GManager instance;
+    public static GManager instance = null;
 
     [SerializeField] GameObject LeftHand;
     [SerializeField] GameObject RightHand;
 
-    int numPlayers = 0;
+    [SerializeField] bool leftAssigned = false;
+
+    public int playerNumber = 0;
 
     private void Awake()
     {
-        instance = this; 
+        instance = this;
     }
 
-    public int GetHand()
+
+
+
+    public bool isLeftAssigned()
     {
-        return ++numPlayers;
+        return leftAssigned;
     }
 
-    public GameObject AssignHand(Hand hand)
+    public void UpdateHandAssignment()
     {
-        switch(hand)
-        {
-            case Hand.Left:
-                return LeftHand;
-            case Hand.Right:
-                return RightHand;
-            default:
-                return null;
-
-        }
+        leftAssigned = true;
     }
 
 }

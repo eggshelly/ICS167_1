@@ -6,21 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Danny stuff/DannyTest.unity
-    guid: 8f4286814223b294fa065dc454034a2c
-  - enabled: 1
     path: Assets/Scenes/Danny stuff/Offline.unity
     guid: 9b226568c0954e846a34bcab02560877
   - enabled: 1
     path: Assets/Scenes/Danny stuff/Room.unity
     guid: 0daea5db101bbd046bfbd4f0a43ad8c3
   - enabled: 1
-    path: Assets/Mirror/Examples/Room/Scenes/OfflineScene.unity
-    guid: 9e6f14982412b2545a0911ebaaa46a23
-  - enabled: 1
-    path: Assets/Mirror/Examples/Room/Scenes/OnlineScene.unity
-    guid: d7a6763559b31854586c9e49916273ef
-  - enabled: 1
-    path: Assets/Mirror/Examples/Room/Scenes/RoomScene.unity
-    guid: 48478f4d522f96945b8396f376299d3a
+    path: Assets/Scenes/Danny stuff/DannyTest.unity
+    guid: 8f4286814223b294fa065dc454034a2c
   m_configObjects: {}
