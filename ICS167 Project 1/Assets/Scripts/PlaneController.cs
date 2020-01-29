@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 using UnityEngine;
 
 public class PlaneController : MonoBehaviour
@@ -7,15 +8,13 @@ public class PlaneController : MonoBehaviour
     public static PlaneController instance;
 
     [SerializeField] GameObject plane;
-    [SerializeField] GameObject horizontalLever;
-    [SerializeField] GameObject verticalLever;
 
     [SerializeField] float speed = 10f;
     [SerializeField] float verticalTorque = 1f;
     [SerializeField] float horizontalTorque = 1f;
     //[SerializeField] float torqueCap = 5f;
-    private Rigidbody m_planerb; 
-    
+    private Rigidbody m_planerb;
+
 
     //TEST
     public bool accelerateButton;
@@ -26,7 +25,10 @@ public class PlaneController : MonoBehaviour
     
     private void Awake()
     {
+        if (instance == null)
+            instance = this;
         m_planerb = plane.GetComponent<Rigidbody>();
+       
     }
     private void Start()
     {
