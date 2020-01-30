@@ -40,7 +40,7 @@ public class ButtonHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Hand"))
+        if (other.gameObject.CompareTag("Player1"))
         {
             state = State.canActivate;
         }
@@ -48,7 +48,7 @@ public class ButtonHandler : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Hand"))
+        if (other.gameObject.CompareTag("Player1"))
         {
             state = State.deactivated;
         }
