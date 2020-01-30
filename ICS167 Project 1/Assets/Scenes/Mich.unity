@@ -915,7 +915,7 @@ PrefabInstance:
     - target: {fileID: 3918572768275934042, guid: f8b59bcd737ae5c42b3357e57033ba0f,
         type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Player1
       objectReference: {fileID: 0}
     - target: {fileID: 5388662847405298063, guid: f8b59bcd737ae5c42b3357e57033ba0f,
         type: 3}
@@ -925,7 +925,7 @@ PrefabInstance:
     - target: {fileID: 5668474912229690222, guid: f8b59bcd737ae5c42b3357e57033ba0f,
         type: 3}
       propertyPath: m_TagString
-      value: Hand
+      value: Player1
       objectReference: {fileID: 0}
     - target: {fileID: 7155898159788842200, guid: f8b59bcd737ae5c42b3357e57033ba0f,
         type: 3}
@@ -1050,10 +1050,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3678e48c82fb3274a890d9122cfdc186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftArmTarget: {fileID: 440018197}
-  leftDefault: {fileID: 1152377521}
-  leftPress: {fileID: 1152377519}
-  leftGrab: {fileID: 1152377520}
+  armTarget: {fileID: 440018197}
+  handDefault: {fileID: 1152377521}
+  handGrab: {fileID: 1152377520}
+  handPress: {fileID: 1152377519}
+  speed: 5
 --- !u!1 &1250936086
 GameObject:
   m_ObjectHideFlags: 0
