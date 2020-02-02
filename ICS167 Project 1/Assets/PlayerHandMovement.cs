@@ -21,7 +21,7 @@ public class PlayerHandMovement : NetworkBehaviour
     public override void OnStartLocalPlayer()
     {
         base.OnStartLocalPlayer();
-        LocalPlayerAnnouncer.InvokeGetHand(base.netIdentity, this.playerNumber);
+        LocalPlayerAnnouncer.InvokeGetHand(netIdentity, this.playerNumber);
     }
 
 
@@ -54,7 +54,7 @@ public class PlayerHandMovement : NetworkBehaviour
 
     private void Update()
     {
-        if (base.hasAuthority)
+        if (hasAuthority)
         {
             Move();
         }
@@ -62,16 +62,16 @@ public class PlayerHandMovement : NetworkBehaviour
 
     void Move()
     {
-        if(base.hasAuthority)
+        if(hasAuthority)
         {
             transform.Translate(new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * moveSpeed + Vector3.down * gravityScale);
         }
     }
 
-    void AttachHand(GameObject hand)
+    void AttachHand(GameObject player, GameObject hand)
     {
-        hand.transform.SetParent(this.transform);
-        this.gameObject.GetComponent<NetworkTransformChild>().target = hand.transform;
+        hand.transform.SetParent(player.transform);
+        player.gameObject.GetComponent<NetworkTransformChild>().target = hand.transform;
         hand.transform.localPosition = Vector3.zero;
     }
 
@@ -80,14 +80,15 @@ public class PlayerHandMovement : NetworkBehaviour
     [Command]
     public void CmdUpdateHandAttachment(GameObject player, GameObject hand)
     {
-        AttachHand(hand);
+        AttachHand(player, hand);
         RpcUpdateHandAttachment(player, hand);
     }
 
     [ClientRpc]
     void RpcUpdateHandAttachment(GameObject player, GameObject hand)
     {
-        AttachHand(hand);
+        Debug.Log(hand.name + " is attached to " + this.gameObject.name);
+        AttachHand(player, hand);
     }
 
 
