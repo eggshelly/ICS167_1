@@ -7,6 +7,10 @@ public class NetworkRoomManager167 : NetworkRoomManager
 
     [SerializeField] NetworkManagerHUD hud;
 
+    public override void OnStartHost()
+    {
+        base.OnStartHost();
+    }
 
     public override bool OnRoomServerSceneLoadedForPlayer(GameObject roomPlayer, GameObject gamePlayer)
     {
