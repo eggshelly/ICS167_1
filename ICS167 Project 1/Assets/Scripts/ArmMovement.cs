@@ -22,42 +22,54 @@ public class ArmMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log("Arm position: (" + armTransform.position.x +", "+ armTransform.position.y +")");
         Move();
         GetInput();
     }
 
     void Move()
     {
-        //float horizontalModifier = Input.GetAxisRaw("Horizontal");
-        //float verticalModifier = Input.GetAxisRaw("Vertical");
+        if (armTransform.position.x >= -.9f && armTransform.position.x <= .9f &&
+            armTransform.position.y >= .5f && armTransform.position.y <= 1.5f) //Arm target constraints
+        {
+            //Debug.Log("True");
+            if (this.CompareTag("Player1"))
+            {
+                if (Input.GetKey(KeyCode.A))
+                    armTransform.Translate(-1 * (Time.deltaTime * speed), 0, 0);
+                if (Input.GetKey(KeyCode.D))
+                    armTransform.Translate(1 * (Time.deltaTime * speed), 0, 0);
+                if (Input.GetKey(KeyCode.S))
+                    armTransform.Translate(0, -1 * (Time.deltaTime * speed), 0);
+                if (Input.GetKey(KeyCode.W))
+                    armTransform.Translate(0, 1 * (Time.deltaTime * speed), 0);
+            }
+            else if (this.CompareTag("Player2"))
+            {
+                if (Input.GetKey(KeyCode.LeftArrow))
+                    armTransform.Translate(-1 * (Time.deltaTime * speed), 0, 0);
+                if (Input.GetKey(KeyCode.RightArrow))
+                    armTransform.Translate(1 * (Time.deltaTime * speed), 0, 0);
+                if (Input.GetKey(KeyCode.DownArrow))
+                    armTransform.Translate(0, -1 * (Time.deltaTime * speed), 0);
+                if (Input.GetKey(KeyCode.UpArrow))
+                    armTransform.Translate(0, 1 * (Time.deltaTime * speed), 0);
+            }
+        }
 
-        if (this.CompareTag("Player1"))
-        {
-            if (Input.GetKey(KeyCode.A))
-                armTransform.Translate(-1 * (Time.deltaTime * speed), 0, 0);
-            if (Input.GetKey(KeyCode.D))
-                armTransform.Translate(1 * (Time.deltaTime * speed), 0, 0);
-            if (Input.GetKey(KeyCode.S))
-                armTransform.Translate(0, -1 * (Time.deltaTime * speed), 0);
-            if (Input.GetKey(KeyCode.W))
-                armTransform.Translate(0, 1 * (Time.deltaTime * speed), 0);
-        }
-        else if (this.CompareTag("Player2"))
-        {
-            if (Input.GetKey(KeyCode.LeftArrow))
-                armTransform.Translate(-1 * (Time.deltaTime * speed), 0, 0);
-            if (Input.GetKey(KeyCode.RightArrow))
-                armTransform.Translate(1 * (Time.deltaTime * speed), 0, 0);
-            if (Input.GetKey(KeyCode.DownArrow))
-                armTransform.Translate(0, -1 * (Time.deltaTime * speed), 0);
-            if (Input.GetKey(KeyCode.UpArrow))
-                armTransform.Translate(0, 1 * (Time.deltaTime * speed), 0);
-        }
+        //Reset position because of how transform pushes objects past bounds sometimes
+        if (armTransform.position.x > .9f)
+            armTransform.position = new Vector2(0.8999f, armTransform.position.y);
+        if (armTransform.position.x < -.9f)
+            armTransform.position = new Vector2(-0.8999f, armTransform.position.y);
+        if (armTransform.position.y > 1.5f)
+            armTransform.position = new Vector2(armTransform.position.x, 1.4999f);
+        if (armTransform.position.y < .5f)
+            armTransform.position = new Vector2(armTransform.position.x, 0.5001f);
         
-        //armTransform.Translate(horizontalModifier * (Time.deltaTime * speed), verticalModifier * (Time.deltaTime * speed), 0);
     }
 
-    void GetInput() //testing method, and change arm states dependent on type of button pressed(?)
+    void GetInput()
     {
         if (Input.GetKey(KeyCode.Z))
         {
@@ -75,10 +87,5 @@ public class ArmMovement : MonoBehaviour
             handGrab.SetActive(false);
             handDefault.SetActive(true);
         }
-    }
-
-    void Interact()
-    {
-
     }
 }
