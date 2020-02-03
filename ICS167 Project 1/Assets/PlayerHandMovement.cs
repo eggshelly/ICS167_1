@@ -9,6 +9,8 @@ public class PlayerHandMovement : NetworkBehaviour
     [SerializeField] float moveSpeed;
     [SerializeField] public int playerNumber = -1;
 
+    [SyncVar(hook = nameof(AttachHand))]
+    GameObject hand = null;
 
     Rigidbody rb;
 
@@ -42,12 +44,12 @@ public class PlayerHandMovement : NetworkBehaviour
         rb = this.GetComponent<Rigidbody>();
     }
 
-    public void AssignHand(GameObject hand, bool isLeft)
+    public void AssignHand(GameObject hand)
     {
-        if (hasAuthority)
+        if (hasAuthority && this.hand != hand)
         {
-            CmdAssignHand(isLeft);
-            CmdUpdateHandAttachment(this.gameObject, hand);
+            this.hand = hand;
+            AttachHand(this.hand);
         }   
     }
 
@@ -68,44 +70,26 @@ public class PlayerHandMovement : NetworkBehaviour
         }
     }
 
-    public void AttachHand(GameObject player, GameObject hand)
+    public void AttachHand(GameObject hand)
     {
-        hand.transform.SetParent(player.transform);
-        hand.transform.localPosition = Vector3.zero;
-    }
-
-
-
-    [Command]
-    public void CmdUpdateHandAttachment(GameObject player, GameObject hand)
-    {
-        Debug.Log(hand.name + " is attached to " + this.gameObject.name);
-        AttachHand(player, hand);
-        RpcUpdateHandAttachment(player, hand);
-    }
-
-    [ClientRpc]
-    void RpcUpdateHandAttachment(GameObject player, GameObject hand)
-    {
-        player.GetComponent<PlayerHandMovement>().AttachHand(player, hand);
-    }
-
-
-    [Command]
-    public void CmdAssignHand(bool leftHand)
-    {
-        if (leftHand)
+        if (hand != null)
         {
-            GManager.instance.UpdateHandAssignment();
-            RpcUpdateAssigned();
+            Debug.Log("Attaching the hand");
+            hand.transform.SetParent(this.transform);
+            hand.transform.localPosition = Vector3.zero;
+            if(hasAuthority)
+                CmdUpdateHandAttachment(hand);
         }
     }
 
 
-    [ClientRpc]
-    void RpcUpdateAssigned()
-    {
-        GManager.instance.UpdateHandAssignment();
-    }
 
+    [Command]
+    public void CmdUpdateHandAttachment(GameObject hand)
+    {
+        this.hand = hand;
+        hand.transform.SetParent(this.transform);
+        hand.transform.localPosition = Vector3.zero;
+        hand.GetComponent<HandScript>().AttachToPlayer(this.gameObject);
+    }
 }

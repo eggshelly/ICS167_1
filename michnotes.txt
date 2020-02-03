@@ -25,3 +25,6 @@ if state = can press AND action button pressed:
 			- set current leverstate to false
 			- leverstate-- unless less than 0;
 			- set current (new) leverstate to true
+
+
+PlaneAction

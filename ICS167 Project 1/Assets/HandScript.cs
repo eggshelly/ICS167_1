@@ -24,18 +24,28 @@ public class HandScript : NetworkBehaviour
             PlayerHandMovement player = localPlayer.GetComponent<PlayerHandMovement>();
             if (leftHand && playerNumber == 0)
             {
-                Debug.Log("Should be assigning the left hand");
-                player.AssignHand(this.gameObject, leftHand);
+                player.AssignHand(this.gameObject);
             }
             else if(!leftHand && playerNumber == 1)
             {
-                Debug.Log("Here!");
-                player.AssignHand(this.gameObject, leftHand);
+                player.AssignHand(this.gameObject);
             }
         }
 
         this.enabled = (localPlayer != null);
     }
+
+    public void AttachToPlayer(GameObject player)
+    {
+        RpcAttachToPlayer(player);
+    }
+
+    [ClientRpc]
+    void RpcAttachToPlayer(GameObject player)
+    {
+        player.GetComponent<PlayerHandMovement>().AssignHand(this.gameObject);
+    }
+
 
     public bool isLeftHand()
     {

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlaneController : MonoBehaviour
 {
+
     public static PlaneController instance;
 
     [SerializeField] GameObject plane;
@@ -32,7 +33,7 @@ public class PlaneController : MonoBehaviour
     }
     private void Start()
     {
-        
+            
     }
 
     private void Update()

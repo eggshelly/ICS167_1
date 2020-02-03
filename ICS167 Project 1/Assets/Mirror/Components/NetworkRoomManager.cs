@@ -158,8 +158,10 @@ namespace Mirror
                     : Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
                 gamePlayer.name = playerPrefab.name;
             }
+
             if (!OnRoomServerSceneLoadedForPlayer(roomPlayer, gamePlayer))
                 return;
+
             // replace room player with game player
             NetworkServer.ReplacePlayerForConnection(conn, gamePlayer, true);
         }
