@@ -10,38 +10,101 @@ public class ButtonHandler : MonoBehaviour
 {
     [SerializeField] ButtonType type;
     [SerializeField] State state;
+    [SerializeField] List<Action> actions = new List<Action>();
 
-    [SerializeField] KeyCode PressButton;
-    [SerializeField] KeyCode LeverButton;
+    [SerializeField] KeyCode InteractButton;   
+
+    [SerializeField] List<KeyCode> LeverKeys = new List<KeyCode>();
+
+    private List<ActionType> ButtonActions; 
 
     void Awake()
     {
+        ButtonActions = new List<ActionType>(actions.Count);
         state = State.deactivated;
+
+        for (int i = 0; i < (actions.Count); i++)
+        {
+            ActionType temp = new ActionType(actions[i]);
+            ButtonActions.Add(temp);
+        }
     }
 
     void Update()
     {
-        if (type == ButtonType.button && Input.GetKeyDown(PressButton))
+
+        if (type == ButtonType.button && Input.GetKeyDown(InteractButton))
         {
-            if (state == State.canActivate)
+            ButtonUpdate();
+        }
+        else if (type == ButtonType.lever && Input.GetKey(InteractButton))
+        {
+            if (state == State.canActivate && Input.GetKey(LeverKeys[0]))
             {
-                PlaneController.instance.accelerateButton = true;
+                ButtonActions[0].Toggle();
                 state = State.activated;
             }
-            else if (state == State.activated)
+            else if (state == State.canActivate && Input.GetKey(LeverKeys[0]))
             {
-                PlaneController.instance.accelerateButton = false;
+                ButtonActions[1].Toggle();
+                state = State.activated;
+            }
+            else if (state == State.activated && Input.GetKey(LeverKeys[0]))
+            {
+                ButtonActions[0].Toggle();
+                state = State.canActivate;
+            }
+            else if (state == State.activated && Input.GetKey(LeverKeys[1]))
+            {
+                ButtonActions[1].Toggle();
                 state = State.canActivate;
             }
         }
+    }
 
+    void ButtonUpdate()
+    {
+        if (state == State.canActivate)
+        {
+            ButtonActions[0].Toggle();
+            state = State.activated;
+        }
+        else if (state == State.activated)
+        {
+            ButtonActions[0].Toggle();
+            state = State.canActivate;
+        }
+    }
 
+    void LeverUpdate()
+    {
+        if (state == State.canActivate && Input.GetKey(LeverKeys[0]))
+        {
+            ButtonActions[0].Toggle();
+            state = State.activated;
+        }
+        else if (state == State.canActivate && Input.GetKey(LeverKeys[0]))
+        {
+            ButtonActions[1].Toggle();
+            state = State.activated;
+        }
+        else if (state == State.activated && Input.GetKey(LeverKeys[0]))
+        {
+            ButtonActions[0].Toggle();
+            state = State.canActivate;
+        }
+        else if (state == State.activated && Input.GetKey(LeverKeys[1]))
+        {
+            ButtonActions[1].Toggle();
+            state = State.canActivate;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player1"))
         {
+            print("ACTIVATE");
             state = State.canActivate;
         }
     }
