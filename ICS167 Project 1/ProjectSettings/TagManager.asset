@@ -7,6 +7,8 @@ TagManager:
   - Hand
   - Player1
   - Player2
+  - GrabButton
+  - PressButton
   layers:
   - Default
   - TransparentFX

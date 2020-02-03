@@ -24,15 +24,13 @@ public class ArmMovement : MonoBehaviour
     {
         //Debug.Log("Arm position: (" + armTransform.position.x +", "+ armTransform.position.y +")");
         Move();
-        GetInput();
     }
 
     void Move()
     {
         if (armTransform.position.x >= -.9f && armTransform.position.x <= .9f &&
-            armTransform.position.y >= .5f && armTransform.position.y <= 1.5f) //Arm target constraints
+            armTransform.position.y >= .5f && armTransform.position.y <= 1.5f) //Arm target constraints to keep arm on sprite
         {
-            //Debug.Log("True");
             if (this.CompareTag("Player1"))
             {
                 if (Input.GetKey(KeyCode.A))
@@ -66,26 +64,5 @@ public class ArmMovement : MonoBehaviour
             armTransform.position = new Vector2(armTransform.position.x, 1.4999f);
         if (armTransform.position.y < .5f)
             armTransform.position = new Vector2(armTransform.position.x, 0.5001f);
-        
-    }
-
-    void GetInput()
-    {
-        if (Input.GetKey(KeyCode.Z))
-        {
-            handDefault.SetActive(false);
-            handPress.SetActive(true);
-        }
-        else if (Input.GetKey(KeyCode.X))
-        {
-            handDefault.SetActive(false);
-            handGrab.SetActive(true);
-        }
-        else
-        {
-            handPress.SetActive(false);
-            handGrab.SetActive(false);
-            handDefault.SetActive(true);
-        }
     }
 }
