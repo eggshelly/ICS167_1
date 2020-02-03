@@ -12,6 +12,8 @@ public class ArmMovement : MonoBehaviour
     [SerializeField] public int speed = 20;
 
     private Transform armTransform;
+    public bool press;
+    public bool grab;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +26,7 @@ public class ArmMovement : MonoBehaviour
     {
         //Debug.Log("Arm position: (" + armTransform.position.x +", "+ armTransform.position.y +")");
         Move();
+        GetInput();
     }
 
     void Move()
@@ -64,5 +67,55 @@ public class ArmMovement : MonoBehaviour
             armTransform.position = new Vector2(armTransform.position.x, 1.4999f);
         if (armTransform.position.y < .5f)
             armTransform.position = new Vector2(armTransform.position.x, 0.5001f);
+    }
+
+    void GetInput()
+    {
+        if (this.CompareTag("Player1") && Input.GetKey(KeyCode.Space))
+        {
+            if (press)
+            {
+                handDefault.SetActive(false);
+                handPress.SetActive(true);
+            }
+            else if (grab)
+            {
+                handDefault.SetActive(false);
+                handGrab.SetActive(true);
+            }
+        }
+        else if (this.CompareTag("Player2") && Input.GetKey(KeyCode.Period))
+        {
+            if (press)
+            {
+                handDefault.SetActive(false);
+                handPress.SetActive(true);
+            }
+            else if (grab)
+            {
+                handDefault.SetActive(false);
+                handGrab.SetActive(true);
+            }
+        }
+        else
+        {
+            handPress.SetActive(false);
+            handGrab.SetActive(false);
+            handDefault.SetActive(true);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("PressButton"))
+            press = true;
+        else if (other.gameObject.CompareTag("GrabButton"))
+            grab = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        press = false;
+        grab = false;
     }
 }
