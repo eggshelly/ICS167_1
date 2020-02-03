@@ -25,17 +25,6 @@ public class GManager : NetworkBehaviour
         instance = this;
     }
 
-
-
-
-    public bool isLeftAssigned()
-    {
-        return leftAssigned;
-    }
-
-    public void UpdateHandAssignment()
-    {
-        leftAssigned = true;
-    }
+    
 
 }

@@ -9,6 +9,8 @@ public class PlayerHandMovement : NetworkBehaviour
     [SerializeField] float moveSpeed;
     [SerializeField] public int playerNumber = -1;
 
+    [SyncVar(hook = nameof(AttachHand))]
+    GameObject hand;
 
     Rigidbody rb;
 
@@ -46,8 +48,7 @@ public class PlayerHandMovement : NetworkBehaviour
     {
         if (hasAuthority)
         {
-            CmdAssignHand(isLeft);
-            CmdUpdateHandAttachment(this.gameObject, hand);
+            this.hand = hand;
         }   
     }
 
@@ -68,10 +69,11 @@ public class PlayerHandMovement : NetworkBehaviour
         }
     }
 
-    public void AttachHand(GameObject player, GameObject hand)
+    public void AttachHand(GameObject hand)
     {
-        hand.transform.SetParent(player.transform);
+        hand.transform.SetParent(this.transform);
         hand.transform.localPosition = Vector3.zero;
+        CmdUpdateHandAttachment(this.gameObject, hand);
     }
 
 
@@ -79,33 +81,9 @@ public class PlayerHandMovement : NetworkBehaviour
     [Command]
     public void CmdUpdateHandAttachment(GameObject player, GameObject hand)
     {
-        Debug.Log(hand.name + " is attached to " + this.gameObject.name);
-        AttachHand(player, hand);
-        RpcUpdateHandAttachment(player, hand);
+        this.hand = hand;
+        hand.transform.SetParent(player.transform);
+        hand.transform.localPosition = Vector3.zero;
+        hand.GetComponent<HandScript>().AttachToPlayer(player);
     }
-
-    [ClientRpc]
-    void RpcUpdateHandAttachment(GameObject player, GameObject hand)
-    {
-        player.GetComponent<PlayerHandMovement>().AttachHand(player, hand);
-    }
-
-
-    [Command]
-    public void CmdAssignHand(bool leftHand)
-    {
-        if (leftHand)
-        {
-            GManager.instance.UpdateHandAssignment();
-            RpcUpdateAssigned();
-        }
-    }
-
-
-    [ClientRpc]
-    void RpcUpdateAssigned()
-    {
-        GManager.instance.UpdateHandAssignment();
-    }
-
 }
