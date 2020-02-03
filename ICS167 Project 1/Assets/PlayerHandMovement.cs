@@ -10,7 +10,7 @@ public class PlayerHandMovement : NetworkBehaviour
     [SerializeField] public int playerNumber = -1;
 
     [SyncVar(hook = nameof(AttachHand))]
-    GameObject hand;
+    GameObject hand = null;
 
     Rigidbody rb;
 
@@ -44,11 +44,14 @@ public class PlayerHandMovement : NetworkBehaviour
         rb = this.GetComponent<Rigidbody>();
     }
 
-    public void AssignHand(GameObject hand, bool isLeft)
+    public void AssignHand(GameObject hand)
     {
-        if (hasAuthority)
+        if (hasAuthority && this.hand != hand)
         {
+            Debug.Log("Assigning Hand");
+            Debug.Log(hand.name);
             this.hand = hand;
+            AttachHand(this.hand);
         }   
     }
 
@@ -71,19 +74,24 @@ public class PlayerHandMovement : NetworkBehaviour
 
     public void AttachHand(GameObject hand)
     {
-        hand.transform.SetParent(this.transform);
-        hand.transform.localPosition = Vector3.zero;
-        CmdUpdateHandAttachment(this.gameObject, hand);
+        Debug.Log(hand == null);
+        if (hand != null)
+        {
+            Debug.Log("Attaching the hand");
+            hand.transform.SetParent(this.transform);
+            hand.transform.localPosition = Vector3.zero;
+            CmdUpdateHandAttachment(hand);
+        }
     }
 
 
 
     [Command]
-    public void CmdUpdateHandAttachment(GameObject player, GameObject hand)
+    public void CmdUpdateHandAttachment(GameObject hand)
     {
         this.hand = hand;
-        hand.transform.SetParent(player.transform);
+        hand.transform.SetParent(this.transform);
         hand.transform.localPosition = Vector3.zero;
-        hand.GetComponent<HandScript>().AttachToPlayer(player);
+        hand.GetComponent<HandScript>().AttachToPlayer(this.gameObject);
     }
 }

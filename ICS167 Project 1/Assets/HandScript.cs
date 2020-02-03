@@ -24,11 +24,11 @@ public class HandScript : NetworkBehaviour
             PlayerHandMovement player = localPlayer.GetComponent<PlayerHandMovement>();
             if (leftHand && playerNumber == 0)
             {
-                player.AssignHand(this.gameObject, leftHand);
+                player.AssignHand(this.gameObject);
             }
             else if(!leftHand && playerNumber == 1)
             {
-                player.AssignHand(this.gameObject, leftHand);
+                player.AssignHand(this.gameObject);
             }
         }
 
@@ -38,16 +38,13 @@ public class HandScript : NetworkBehaviour
     public void AttachToPlayer(GameObject player)
     {
         Debug.Log(this.name + " is attached");
-        this.transform.SetParent(player.transform);
-        this.transform.localPosition = Vector3.zero;
-        RpcAttachToPlayer(player, this.gameObject);
+        RpcAttachToPlayer(player);
     }
 
     [ClientRpc]
-    void RpcAttachToPlayer(GameObject player, GameObject hand)
+    void RpcAttachToPlayer(GameObject player)
     {
-        Debug.Log(hand.name + " has received the command.");
-        player.GetComponent<PlayerHandMovement>().AttachHand(hand);
+        player.GetComponent<PlayerHandMovement>().AssignHand(this.gameObject);
     }
 
 
