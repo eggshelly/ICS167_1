@@ -37,7 +37,6 @@ public class HandScript : NetworkBehaviour
 
     public void AttachToPlayer(GameObject player)
     {
-        Debug.Log(this.name + " is attached");
         RpcAttachToPlayer(player);
     }
 

@@ -48,8 +48,6 @@ public class PlayerHandMovement : NetworkBehaviour
     {
         if (hasAuthority && this.hand != hand)
         {
-            Debug.Log("Assigning Hand");
-            Debug.Log(hand.name);
             this.hand = hand;
             AttachHand(this.hand);
         }   
@@ -74,8 +72,7 @@ public class PlayerHandMovement : NetworkBehaviour
 
     public void AttachHand(GameObject hand)
     {
-        Debug.Log(hand == null);
-        if (hand != null)
+        if (hand != null && hasAuthority)
         {
             Debug.Log("Attaching the hand");
             hand.transform.SetParent(this.transform);
