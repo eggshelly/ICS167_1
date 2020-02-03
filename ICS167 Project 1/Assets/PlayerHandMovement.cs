@@ -72,12 +72,13 @@ public class PlayerHandMovement : NetworkBehaviour
 
     public void AttachHand(GameObject hand)
     {
-        if (hand != null && hasAuthority)
+        if (hand != null)
         {
             Debug.Log("Attaching the hand");
             hand.transform.SetParent(this.transform);
             hand.transform.localPosition = Vector3.zero;
-            CmdUpdateHandAttachment(hand);
+            if(hasAuthority)
+                CmdUpdateHandAttachment(hand);
         }
     }
 
