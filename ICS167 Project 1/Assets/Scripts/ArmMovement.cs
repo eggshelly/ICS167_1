@@ -12,6 +12,8 @@ public class ArmMovement : MonoBehaviour
     [SerializeField] public int speed = 20;
 
     private Transform armTransform;
+    private KeyCode inputKey;
+
     public bool press;
     public bool grab;
 
@@ -19,6 +21,11 @@ public class ArmMovement : MonoBehaviour
     void Start()
     {
         armTransform = armTarget.transform;
+
+        if (this.CompareTag("Player1"))
+            inputKey = KeyCode.Space;
+        else if (this.CompareTag("Player2"))
+            inputKey = KeyCode.Period;
     }
 
     // Update is called once per frame
@@ -71,20 +78,7 @@ public class ArmMovement : MonoBehaviour
 
     void GetInput()
     {
-        if (this.CompareTag("Player1") && Input.GetKey(KeyCode.Space))
-        {
-            if (press)
-            {
-                handDefault.SetActive(false);
-                handPress.SetActive(true);
-            }
-            else if (grab)
-            {
-                handDefault.SetActive(false);
-                handGrab.SetActive(true);
-            }
-        }
-        else if (this.CompareTag("Player2") && Input.GetKey(KeyCode.Period))
+        if (Input.GetKey(inputKey))
         {
             if (press)
             {
