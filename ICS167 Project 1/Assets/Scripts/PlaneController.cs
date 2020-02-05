@@ -13,6 +13,7 @@ public class PlaneController : MonoBehaviour
     [SerializeField] float speed = 10f;
     [SerializeField] float verticalTorque = 1f;
     [SerializeField] float horizontalTorque = 1f;
+    [SerializeField] float maxSpeedForLanding;
     //[SerializeField] float torqueCap = 5f;
     private Rigidbody m_planerb;
 
@@ -23,6 +24,8 @@ public class PlaneController : MonoBehaviour
     public bool hLeverLeft;
     public bool vLeverUp;
     public bool vLeverDown;
+
+    bool landingGearDeployed = false;
     
     private void Awake()
     {
@@ -83,5 +86,26 @@ public class PlaneController : MonoBehaviour
     {
         m_planerb.AddForce(transform.up * -speed);
         plane.transform.Rotate(verticalTorque, 0, 0);
+    }
+
+    void DeployLandingGear()
+    {
+        //do smth else here;
+        landingGearDeployed = true;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Road"))
+        {
+            if(m_planerb.velocity.magnitude < maxSpeedForLanding && landingGearDeployed)
+            {
+                //probably initiate the clapping sound and display a you win screen
+            }
+            else
+            {
+                Debug.Log("You ded lul");
+            }
+        }
     }
 }
