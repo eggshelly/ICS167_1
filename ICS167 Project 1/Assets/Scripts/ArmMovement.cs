@@ -9,11 +9,12 @@ public class ArmMovement : MonoBehaviour
     [SerializeField] public GameObject handGrab;
     [SerializeField] public GameObject handPress;
     
-    [SerializeField] public int speed = 20;
+    [SerializeField] public int speed = 3;
 
     private Transform armTransform;
     private KeyCode inputKey;
 
+    Vector2 savedPos = Vector2.zero;
     public bool press;
     public bool grab;
 
@@ -38,42 +39,42 @@ public class ArmMovement : MonoBehaviour
 
     void Move()
     {
-        if (armTransform.position.x >= -.9f && armTransform.position.x <= .9f &&
-            armTransform.position.y >= .5f && armTransform.position.y <= 1.5f) //Arm target constraints to keep arm on sprite
+        if (this.CompareTag("Player1"))
         {
-            if (this.CompareTag("Player1"))
-            {
-                if (Input.GetKey(KeyCode.A))
-                    armTransform.Translate(-1 * (Time.deltaTime * speed), 0, 0);
-                if (Input.GetKey(KeyCode.D))
-                    armTransform.Translate(1 * (Time.deltaTime * speed), 0, 0);
-                if (Input.GetKey(KeyCode.S))
-                    armTransform.Translate(0, -1 * (Time.deltaTime * speed), 0);
-                if (Input.GetKey(KeyCode.W))
-                    armTransform.Translate(0, 1 * (Time.deltaTime * speed), 0);
-            }
-            else if (this.CompareTag("Player2"))
-            {
-                if (Input.GetKey(KeyCode.LeftArrow))
-                    armTransform.Translate(-1 * (Time.deltaTime * speed), 0, 0);
-                if (Input.GetKey(KeyCode.RightArrow))
-                    armTransform.Translate(1 * (Time.deltaTime * speed), 0, 0);
-                if (Input.GetKey(KeyCode.DownArrow))
-                    armTransform.Translate(0, -1 * (Time.deltaTime * speed), 0);
-                if (Input.GetKey(KeyCode.UpArrow))
-                    armTransform.Translate(0, 1 * (Time.deltaTime * speed), 0);
-            }
+            if (Input.GetKey(KeyCode.A))
+                armTransform.Translate(-1 * (Time.deltaTime * speed), 0, 0);
+            if (Input.GetKey(KeyCode.D))
+                armTransform.Translate(1 * (Time.deltaTime * speed), 0, 0);
+            if (Input.GetKey(KeyCode.S))
+                armTransform.Translate(0, -1 * (Time.deltaTime * speed), 0);
+            if (Input.GetKey(KeyCode.W))
+                armTransform.Translate(0, 1 * (Time.deltaTime * speed), 0);
+        }
+        else if (this.CompareTag("Player2"))
+        {
+            if (Input.GetKey(KeyCode.LeftArrow))
+                armTransform.Translate(-1 * (Time.deltaTime * speed), 0, 0);
+            if (Input.GetKey(KeyCode.RightArrow))
+                armTransform.Translate(1 * (Time.deltaTime * speed), 0, 0);
+            if (Input.GetKey(KeyCode.DownArrow))
+                armTransform.Translate(0, -1 * (Time.deltaTime * speed), 0);
+            if (Input.GetKey(KeyCode.UpArrow))
+                armTransform.Translate(0, 1 * (Time.deltaTime * speed), 0);
         }
 
-        //Reset position because of how transform pushes objects past bounds sometimes
-        if (armTransform.position.x > .9f)
-            armTransform.position = new Vector2(0.8999f, armTransform.position.y);
-        if (armTransform.position.x < -.9f)
-            armTransform.position = new Vector2(-0.8999f, armTransform.position.y);
-        if (armTransform.position.y > 1.5f)
-            armTransform.position = new Vector2(armTransform.position.x, 1.4999f);
-        if (armTransform.position.y < .5f)
-            armTransform.position = new Vector2(armTransform.position.x, 0.5001f);
+        //Clamp arm targets to current camera space
+        float cameraOffset = armTransform.position.z - Camera.main.transform.position.z;
+
+        float leftBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, cameraOffset)).x;
+        float rightBorder = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, cameraOffset)).x;
+        float topBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, cameraOffset)).y;
+        float bottomBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 1, cameraOffset)).y;
+
+        armTransform.position = new Vector3( //restrict arm target to camera border bounds
+            Mathf.Clamp(armTransform.position.x, leftBorder, rightBorder),
+            Mathf.Clamp(armTransform.position.y, topBorder, bottomBorder),
+            armTransform.position.z
+        ); 
     }
 
     void GetInput()
