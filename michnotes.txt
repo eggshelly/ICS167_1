@@ -1,7 +1,13 @@
-CameraController.cs
-	- follows "plane" obj that we control
-	- such that it appears we are moving since all the viewable objects are children of camera
-
 Environment.cs
 	- boundaries such that plane transforms a certain amount 
 	- larger, repeating 
+
+
+
+TODO:
+	- issue w/ hands gravity; 
+		SOLUTION? chagne force of movement
+
+	- plane must be in "landing mode"
+
+	- winning parameters
