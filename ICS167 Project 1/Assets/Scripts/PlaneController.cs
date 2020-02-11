@@ -25,6 +25,9 @@ public class PlaneController : MonoBehaviour
     public bool vLeverUp;
     public bool vLeverDown;
 
+
+    public bool landingActivated;
+
     bool landingGearDeployed = false;
     
     private void Awake()

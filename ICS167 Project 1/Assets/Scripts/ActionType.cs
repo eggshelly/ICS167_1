@@ -8,7 +8,8 @@ public enum Action
     right,
     left,
     up,
-    down
+    down,
+    land
 };
 
 public class ActionType
@@ -31,6 +32,14 @@ public class ActionType
         else if (action == Action.down)
             PlaneController.instance.vLeverDown = !PlaneController.instance.vLeverDown;
 
+        else if (action == Action.right)
+            PlaneController.instance.hLeverRight = !PlaneController.instance.hLeverRight;
+
+        else if (action == Action.left)
+            PlaneController.instance.hLeverLeft = !PlaneController.instance.hLeverLeft;
+
+        else if (action == Action.land)
+            PlaneController.instance.landingActivated = !PlaneController.instance.landingActivated;
 
     }
 };
