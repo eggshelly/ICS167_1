@@ -2054,7 +2054,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 600110749}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.3697, y: -0.1045, z: 0}
+  m_LocalPosition: {x: -0.273, y: 0.31, z: 0}
   m_LocalScale: {x: 1.1636, y: 1.1452, z: 1}
   m_Children: []
   m_Father: {fileID: 1575749346}
@@ -2125,8 +2125,8 @@ MonoBehaviour:
   type: 1
   state: 0
   actions: 0400000005000000
-  InteractButton: 46
-  LeverKeys: 1101000012010000
+  InteractButton: 32
+  LeverKeys: 7700000073000000
 --- !u!54 &600110753
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2154,8 +2154,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.3725001, y: 0.3762501, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.2753615, y: 0.07417381, z: 0.2}
+  m_Center: {x: -0.048569337, y: -0.031666126, z: 0}
 --- !u!1001 &621917270
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4238,8 +4238,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.15735853, y: 0.16970146, z: 0.2}
-  m_Center: {x: -0.0020924807, y: 0.019524276, z: 0}
+  m_Size: {x: 0.15735853, y: 0.13133001, z: 0.2}
+  m_Center: {x: -0.0020924807, y: 0.038709998, z: 0}
 --- !u!1001 &1123151361
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4543,8 +4543,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.14284818, y: 0.16696787, z: 0.15883884}
-  m_Center: {x: 0.021543898, y: 0.02089107, z: 0.020580575}
+  m_Size: {x: 0.14284818, y: 0.14416587, z: 0.15883884}
+  m_Center: {x: 0.021543898, y: 0.032292068, z: 0.020580575}
 --- !u!4 &1141664647 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5379851084530942662, guid: eacc9c118f4d66945ab32473af334a2e,
@@ -4654,7 +4654,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1202867935
 Transform:
   m_ObjectHideFlags: 0
@@ -4727,7 +4727,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1202867934}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.15074827, y: 0.15566564, z: 0.2}
@@ -10027,7 +10027,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1372080432}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -11}
+  m_LocalPosition: {x: -0, y: 1, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1066025746}
@@ -11619,7 +11619,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2004273702}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.4093, y: -0.111, z: 0}
+  m_LocalPosition: {x: 0.507, y: -0.111, z: 0}
   m_LocalScale: {x: 1.3401, y: 1.3401, z: 1.3401}
   m_Children: []
   m_Father: {fileID: 1575749346}
@@ -11690,8 +11690,8 @@ MonoBehaviour:
   type: 1
   state: 0
   actions: 0300000002000000
-  InteractButton: 32
-  LeverKeys: 6100000064000000
+  InteractButton: 46
+  LeverKeys: 1401000013010000
 --- !u!54 &2004273706
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11719,8 +11719,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.3725, y: 0.37625, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.3725, y: 0.036002237, z: 0.2}
+  m_Center: {x: 0, y: -0.0021037618, z: 0}
 --- !u!1 &2011461556
 GameObject:
   m_ObjectHideFlags: 0
