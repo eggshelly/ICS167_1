@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class PlaneLanding : MonoBehaviour
 {
     [SerializeField] GameObject plane;
-    [SerializeField] GameObject EndPanel;
+    [SerializeField] GameObject WinPanel;
+    [SerializeField] GameObject LosePanel;
     [SerializeField] float maxSpeedForLanding;
 
     Rigidbody m_planerb;
@@ -19,15 +20,9 @@ public class PlaneLanding : MonoBehaviour
         m_planerb = plane.GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
-    void DeployLandingGear()
+    public void DeployLandingGear()
     {
-        //do smth else here;
         landingGearDeployed = true;
     }
 
@@ -35,13 +30,14 @@ public class PlaneLanding : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Road"))
         {
+            m_planerb.constraints = RigidbodyConstraints.FreezeAll;
             if (m_planerb.velocity.magnitude < maxSpeedForLanding && landingGearDeployed)
             {
-                m_planerb.constraints = RigidbodyConstraints.FreezeAll;
+                WinPanel.SetActive(true);
             }
             else
             {
-                Debug.Log("You ded lul");
+                LosePanel.SetActive(true);
             }
         }
     }
