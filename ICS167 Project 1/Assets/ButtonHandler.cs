@@ -115,7 +115,8 @@ public class ButtonHandler : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player1") || other.gameObject.CompareTag("Player2"))
         {
-            state = State.deactivated;
+            if (state != State.activated)
+                state = State.deactivated;
         }
     }
 }

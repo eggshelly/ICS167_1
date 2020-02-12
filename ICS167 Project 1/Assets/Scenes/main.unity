@@ -415,8 +415,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.31125, y: 0.20875, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.117034376, y: 0.14161098, z: 0.2}
+  m_Center: {x: 0.015008062, y: 0.033569515, z: 0}
 --- !u!1001 &78014629
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2040,12 +2040,12 @@ GameObject:
   - component: {fileID: 600110753}
   - component: {fileID: 600110754}
   m_Layer: 0
-  m_Name: lever1_neutral (1)
+  m_Name: vertical
   m_TagString: GrabButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &600110750
 Transform:
   m_ObjectHideFlags: 0
@@ -2124,9 +2124,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   state: 0
-  actions: 
+  actions: 0400000005000000
   InteractButton: 46
-  LeverKeys: 
+  LeverKeys: 1101000012010000
 --- !u!54 &600110753
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4129,7 +4129,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1113111463
 Transform:
   m_ObjectHideFlags: 0
@@ -4238,8 +4238,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.31125, y: 0.20875, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.15735853, y: 0.16970146, z: 0.2}
+  m_Center: {x: -0.0020924807, y: 0.019524276, z: 0}
 --- !u!1001 &1123151361
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4543,8 +4543,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.31125, y: 0.20875, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.14284818, y: 0.16696787, z: 0.15883884}
+  m_Center: {x: 0.021543898, y: 0.02089107, z: 0.020580575}
 --- !u!4 &1141664647 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5379851084530942662, guid: eacc9c118f4d66945ab32473af334a2e,
@@ -4645,10 +4645,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1202867935}
-  - component: {fileID: 1202867937}
   - component: {fileID: 1202867936}
   - component: {fileID: 1202867938}
-  - component: {fileID: 1202867939}
+  - component: {fileID: 1202867937}
   m_Layer: 0
   m_Name: button
   m_TagString: Untagged
@@ -4720,23 +4719,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1202867937
-MonoBehaviour:
+--- !u!65 &1202867937
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1202867934}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b416a6b0bc101584eb94ed1f0db4d002, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  state: 0
-  actions: 
-  InteractButton: 32
-  LeverKeys: 
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.15074827, y: 0.15566564, z: 0.2}
+  m_Center: {x: 0.009004302, y: 0.026542187, z: 0}
 --- !u!54 &1202867938
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4753,19 +4748,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!65 &1202867939
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1202867934}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 0.31125, y: 0.20875, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1224461437
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11623,12 +11605,12 @@ GameObject:
   - component: {fileID: 2004273706}
   - component: {fileID: 2004273707}
   m_Layer: 0
-  m_Name: lever1_neutral
+  m_Name: horizontal
   m_TagString: GrabButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2004273703
 Transform:
   m_ObjectHideFlags: 0
@@ -11707,9 +11689,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   state: 0
-  actions: 
+  actions: 0300000002000000
   InteractButton: 32
-  LeverKeys: 
+  LeverKeys: 6100000064000000
 --- !u!54 &2004273706
 Rigidbody:
   m_ObjectHideFlags: 0
