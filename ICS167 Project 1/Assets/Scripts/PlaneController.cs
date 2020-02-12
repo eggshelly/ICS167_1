@@ -55,10 +55,11 @@ public class PlaneController : MonoBehaviour
 
         if (accelerateButton)
             accel();
-        else if (deccelerateButton)
+        //else
+        if (deccelerateButton)
             deccel();
-        else
-            m_planerb.velocity = new Vector3(m_planerb.velocity.x, m_planerb.velocity.y, currentZvelocity);
+        //else
+        //    m_planerb.velocity = new Vector3(m_planerb.velocity.x, m_planerb.velocity.y, currentZvelocity);
 
         if (hLeverRight)
             tiltRight();
