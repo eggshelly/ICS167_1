@@ -3197,6 +3197,7 @@ MonoBehaviour:
   horizontalTorque: 0.5
   maxSpeedForLanding: 0
   accelerateButton: 0
+  deccelerateButton: 0
   hLeverRight: 0
   hLeverLeft: 0
   vLeverUp: 0
@@ -3221,7 +3222,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1113111463
 Transform:
   m_ObjectHideFlags: 0
@@ -3605,7 +3606,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   state: 0
-  actions: 
+  actions: 01000000
   InteractButton: 46
   LeverKeys: 
 --- !u!54 &1136400565
@@ -3747,7 +3748,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1202867935
 Transform:
   m_ObjectHideFlags: 0

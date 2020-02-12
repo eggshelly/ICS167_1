@@ -5,6 +5,7 @@ using UnityEngine;
 public enum Action
 {
     accel,
+    deccel,
     right,
     left,
     up,
@@ -25,6 +26,9 @@ public class ActionType
     {
         if (action == Action.accel)
             PlaneController.instance.accelerateButton = !PlaneController.instance.accelerateButton;
+
+        else if (action == Action.deccel)
+            PlaneController.instance.deccelerateButton = !PlaneController.instance.deccelerateButton;
 
         else if (action == Action.up)
             PlaneController.instance.vLeverUp = !PlaneController.instance.vLeverUp;
