@@ -42,26 +42,7 @@ public class ButtonHandler : MonoBehaviour
         }
         else if (type == ButtonType.lever && Input.GetKey(InteractButton))
         {
-            if (state == State.canActivate && Input.GetKey(LeverKeys[0]))
-            {
-                ButtonActions[0].Toggle();
-                state = State.activated;
-            }
-            else if (state == State.canActivate && Input.GetKey(LeverKeys[0]))
-            {
-                ButtonActions[1].Toggle();
-                state = State.activated;
-            }
-            else if (state == State.activated && Input.GetKey(LeverKeys[0]))
-            {
-                ButtonActions[0].Toggle();
-                state = State.canActivate;
-            }
-            else if (state == State.activated && Input.GetKey(LeverKeys[1]))
-            {
-                ButtonActions[1].Toggle();
-                state = State.canActivate;
-            }
+            LeverUpdate();
         }
     }
 
@@ -86,7 +67,7 @@ public class ButtonHandler : MonoBehaviour
             ButtonActions[0].Toggle();
             state = State.activated;
         }
-        else if (state == State.canActivate && Input.GetKey(LeverKeys[0]))
+        else if (state == State.canActivate && Input.GetKey(LeverKeys[1]))
         {
             ButtonActions[1].Toggle();
             state = State.activated;
