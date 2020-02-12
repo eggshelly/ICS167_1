@@ -4036,6 +4036,7 @@ MonoBehaviour:
   zmin: -20
   xmax: 20
   xmin: -20
+  ymax: 40
   shift: 2
 --- !u!1 &1089718147
 GameObject:

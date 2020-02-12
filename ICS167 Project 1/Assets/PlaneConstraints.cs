@@ -9,6 +9,7 @@ public class PlaneConstraints : MonoBehaviour
     [SerializeField] float zmin;
     [SerializeField] float xmax;
     [SerializeField] float xmin;
+    [SerializeField] float ymax;
     [SerializeField] float shift;
 
 
@@ -30,15 +31,15 @@ public class PlaneConstraints : MonoBehaviour
     void CheckBoundaries()
     {
         Vector3 center = c.center;
-        Vector3 left = plane.transform.TransformPoint(new Vector3(center.x - c.size.x / 2, center.y, center.z + c.size.y));
-        Vector3 middle = plane.transform.TransformPoint(new Vector3(center.x, center.y, center.z + c.size.y)); 
-        Vector3 right = plane.transform.TransformPoint(new Vector3(center.x + c.size.x / 2, center.y, center.z + c.size.y));
+        Vector3 left = plane.transform.TransformPoint(new Vector3(center.x - c.size.x / 2, center.y, center.z + (c.size.z/2)));
+        Vector3 middle = plane.transform.TransformPoint(new Vector3(center.x, center.y, center.z + (c.size.z / 2))); 
+        Vector3 right = plane.transform.TransformPoint(new Vector3(center.x + c.size.x / 2, center.y, center.z + (c.size.z / 2)));
 
-        Vector3 bleft = plane.transform.TransformPoint(new Vector3(center.x - c.size.x / 2, center.y, center.z - c.size.y));
-        Vector3 bmiddle = plane.transform.TransformPoint(new Vector3(center.x, center.y, center.z - c.size.y));
-        Vector3 bright = plane.transform.TransformPoint(new Vector3(center.x + c.size.x / 2, center.y, center.z - c.size.y));
+        Vector3 bleft = plane.transform.TransformPoint(new Vector3(center.x - c.size.x / 2, center.y, center.z - (c.size.z / 2)));
+        Vector3 bmiddle = plane.transform.TransformPoint(new Vector3(center.x, center.y, center.z - (c.size.z / 2)));
+        Vector3 bright = plane.transform.TransformPoint(new Vector3(center.x + c.size.x / 2, center.y, center.z - (c.size.z / 2)));
 
-
+        Vector3 top = plane.transform.TransformPoint(center + transform.up * (c.size.y / 2));
 
 
         if (left.x < xmin || middle.x < xmin || right.x < xmin)
@@ -48,7 +49,7 @@ public class PlaneConstraints : MonoBehaviour
         }
         else if(left.x > xmax || middle.x > xmax || right.x > xmax)
         {
-            plane.transform.position += Vector3.left * ( Mathf.Max(xmax - left.x, Mathf.Max(xmax - middle.x, xmax - right.x)) + shift);
+            plane.transform.position += Vector3.left * ( Mathf.Max(left.x - xmax, Mathf.Max(middle.x - xmax, right.x - xmax)) + shift);
             rb.velocity = Vector3.zero;
         }
 
@@ -61,7 +62,7 @@ public class PlaneConstraints : MonoBehaviour
     
         else if (left.z > zmax || middle.z > zmax || right.z > zmax)
         {
-            plane.transform.position += Vector3.back * (Mathf.Max(zmax - left.z, Mathf.Max(zmax - middle.z, zmax - right.z)) +  shift);
+            plane.transform.position += Vector3.back * (Mathf.Max(left.z - zmax, Mathf.Max(middle.z - zmax, right.z - zmax)) +  shift);
             rb.velocity = Vector3.zero;
         }
 
@@ -73,7 +74,7 @@ public class PlaneConstraints : MonoBehaviour
         }
         else if (bleft.x > xmax || bmiddle.x > xmax || bright.x > xmax)
         {
-            plane.transform.position += Vector3.left * (Mathf.Max(xmax - bleft.x, Mathf.Max(xmax - bmiddle.x, xmax - bright.x)) + shift);
+            plane.transform.position += Vector3.left * (Mathf.Max(bleft.x - xmax, Mathf.Max(bmiddle.x - xmax, bright.x - xmax)) + shift);
             rb.velocity = Vector3.zero;
         }
 
@@ -86,8 +87,14 @@ public class PlaneConstraints : MonoBehaviour
 
         else if (bleft.z > zmax || bmiddle.z > zmax || bright.z > zmax)
         {
-            plane.transform.position += Vector3.back * (Mathf.Max(zmax - bleft.z, Mathf.Max(zmax - bmiddle.z, zmax - bright.z)) + shift);
+            plane.transform.position += Vector3.back * (Mathf.Max(bleft.z - zmax, Mathf.Max(bmiddle.z - zmax, bright.z - zmax)) + shift);
             rb.velocity = Vector3.zero;
+        }
+
+        if(top.y > ymax)
+        {
+            plane.transform.position += Vector3.down * ( top.y - ymax + shift);
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         }
 
     }
