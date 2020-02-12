@@ -5,13 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Danny stuff/Offline.unity
     guid: 9b226568c0954e846a34bcab02560877
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Danny stuff/Room.unity
     guid: 0daea5db101bbd046bfbd4f0a43ad8c3
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Danny stuff/DannyTest.unity
     guid: 8f4286814223b294fa065dc454034a2c
+  - enabled: 1
+    path: Assets/Scenes/title.unity
+    guid: 07284e44063ca524f8daaf94e4bcc991
+  - enabled: 1
+    path: Assets/Scenes/main.unity
+    guid: a862f039cfc00ec43a5b2b70f1fbbfca
   m_configObjects: {}
