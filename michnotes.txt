@@ -5,9 +5,10 @@ Environment.cs
 
 
 TODO:
-	- issue w/ hands gravity; 
-		SOLUTION? chagne force of movement
-
-	- plane must be in "landing mode"
-
 	- winning parameters
+
+	- skybox
+
+	- fix accel; should maintain 
+
+	- fix planehandler deactivate; should just keep if activated
