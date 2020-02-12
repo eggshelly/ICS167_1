@@ -9,6 +9,7 @@ TagManager:
   - Player2
   - GrabButton
   - PressButton
+  - Road
   layers:
   - Default
   - TransparentFX
