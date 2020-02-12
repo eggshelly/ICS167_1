@@ -16,12 +16,20 @@ public class ButtonHandler : MonoBehaviour
 
     [SerializeField] List<KeyCode> LeverKeys = new List<KeyCode>();
 
+    public Sprite off, on;
+    
+
+    private SpriteRenderer sprRend;
+    private AudioSource aud;
     private List<ActionType> ButtonActions; 
 
     void Awake()
     {
         ButtonActions = new List<ActionType>(actions.Count);
         state = State.deactivated;
+
+        sprRend = this.gameObject.GetComponent<SpriteRenderer>();
+        aud = this.gameObject.GetComponent<AudioSource>();
 
         for (int i = 0; i < (actions.Count); i++)
         {
@@ -42,7 +50,26 @@ public class ButtonHandler : MonoBehaviour
         }
         else if (type == ButtonType.lever && Input.GetKey(InteractButton))
         {
-            LeverUpdate();
+            if (state == State.canActivate && Input.GetKey(LeverKeys[0]))
+            {
+                ButtonActions[0].Toggle();
+                state = State.activated;
+            }
+            else if (state == State.canActivate && Input.GetKey(LeverKeys[0]))
+            {
+                ButtonActions[1].Toggle();
+                state = State.activated;
+            }
+            else if (state == State.activated && Input.GetKey(LeverKeys[0]))
+            {
+                ButtonActions[0].Toggle();
+                state = State.canActivate;
+            }
+            else if (state == State.activated && Input.GetKey(LeverKeys[1]))
+            {
+                ButtonActions[1].Toggle();
+                state = State.canActivate;
+            }
         }
     }
 
@@ -52,11 +79,15 @@ public class ButtonHandler : MonoBehaviour
         {
             ButtonActions[0].Toggle();
             state = State.activated;
+            sprRend.sprite = on;
+            aud.PlayOneShot(aud.clip);
         }
         else if (state == State.activated)
         {
             ButtonActions[0].Toggle();
             state = State.canActivate;
+            sprRend.sprite = off;
+            aud.PlayOneShot(aud.clip);
         }
     }
 
@@ -67,7 +98,7 @@ public class ButtonHandler : MonoBehaviour
             ButtonActions[0].Toggle();
             state = State.activated;
         }
-        else if (state == State.canActivate && Input.GetKey(LeverKeys[1]))
+        else if (state == State.canActivate && Input.GetKey(LeverKeys[0]))
         {
             ButtonActions[1].Toggle();
             state = State.activated;
