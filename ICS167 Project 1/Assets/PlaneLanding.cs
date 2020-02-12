@@ -18,6 +18,8 @@ public class PlaneLanding : MonoBehaviour
     void Start()
     {
         m_planerb = plane.GetComponent<Rigidbody>();
+        WinPanel.SetActive(false);
+        LosePanel.SetActive(false);
     }
 
 

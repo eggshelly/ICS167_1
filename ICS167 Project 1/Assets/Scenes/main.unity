@@ -554,6 +554,7 @@ GameObject:
   - component: {fileID: 119289990}
   - component: {fileID: 119289992}
   - component: {fileID: 119289991}
+  - component: {fileID: 119289993}
   m_Layer: 5
   m_Name: WinPanel
   m_TagString: Untagged
@@ -621,6 +622,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119289989}
   m_CullTransparentMesh: 0
+--- !u!114 &119289993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119289989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62e372aaf4120db458d86a673c2bbeb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &149505491
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2388,7 +2401,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 663461372}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 119289993}
+        m_MethodName: gotoMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &663461372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4489,6 +4513,7 @@ GameObject:
   - component: {fileID: 1021991498}
   - component: {fileID: 1021991500}
   - component: {fileID: 1021991499}
+  - component: {fileID: 1021991501}
   m_Layer: 5
   m_Name: LosePanel
   m_TagString: Untagged
@@ -4556,6 +4581,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1021991497}
   m_CullTransparentMesh: 0
+--- !u!114 &1021991501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021991497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62e372aaf4120db458d86a673c2bbeb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1029561835
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4806,7 +4843,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1052817947}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1021991501}
+        m_MethodName: playGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1052817947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14058,7 +14106,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1875599374}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1021991501}
+        m_MethodName: gotoMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1875599374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15469,7 +15528,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2019631838}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 119289993}
+        m_MethodName: playGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2019631838
 MonoBehaviour:
   m_ObjectHideFlags: 0
