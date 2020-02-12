@@ -3650,6 +3650,7 @@ MonoBehaviour:
   horizontalTorque: 0.5
   maxSpeedForLanding: 0
   accelerateButton: 0
+  deccelerateButton: 0
   hLeverRight: 0
   hLeverLeft: 0
   vLeverUp: 0
@@ -11828,7 +11829,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 64
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!23 &2051224546
 MeshRenderer:
