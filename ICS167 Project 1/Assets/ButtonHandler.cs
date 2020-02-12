@@ -43,7 +43,7 @@ public class ButtonHandler : MonoBehaviour
 
     void Update()
     {
-
+        //LeverUpdate();
         if (type == ButtonType.button && Input.GetKeyDown(InteractButton))
         {
             ButtonUpdate();
@@ -103,7 +103,7 @@ public class ButtonHandler : MonoBehaviour
             ButtonActions[1].Toggle();
             state = State.activated;
         }
-        else if (state == State.activated && Input.GetKey(LeverKeys[0]))
+        else if (state == State.activated && Input.GetKey(LeverKeys[1]))
         {
             ButtonActions[0].Toggle();
             state = State.canActivate;
