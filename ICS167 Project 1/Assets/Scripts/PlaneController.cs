@@ -11,12 +11,13 @@ public class PlaneController : MonoBehaviour
     [SerializeField] GameObject plane;
 
     [SerializeField] float speed = 10f;
+    [SerializeField] float speedcap = 20f;
     [SerializeField] float verticalTorque = 1f;
     [SerializeField] float horizontalTorque = 1f;
     [SerializeField] float maxSpeedForLanding;
     //[SerializeField] float torqueCap = 5f;
     private Rigidbody m_planerb;
-    private float currentZvelocity;
+    public float currentZvelocity;
 
 
     //TEST
@@ -53,10 +54,8 @@ public class PlaneController : MonoBehaviour
     {
 
 
-        //else if (deccelerateButton)
-        //    deccel();
-        //else
-        //    m_planerb.velocity = new Vector3(m_planerb.velocity.x, m_planerb.velocity.y, currentZvelocity);
+        print(currentZvelocity);
+
         if (accelerateButton)
             accel();
         else if (deccelerateButton)
@@ -75,7 +74,10 @@ public class PlaneController : MonoBehaviour
 
     private void accel()
     {
-        //m_planerb.velocity = Vector3.forward * speed;
+        Vector3 accelVector = transform.forward * speed;
+        if (accelVector.z > speedcap)
+            accelVector = new Vector3(accelVector.x, accelVector.y, speedcap);
+        
         m_planerb.AddForce(transform.forward * speed);
         currentZvelocity = m_planerb.velocity.z;
     }
