@@ -31,7 +31,8 @@ public class PlaneLanding : MonoBehaviour
         if (collision.gameObject.CompareTag("Road"))
         {
             m_planerb.constraints = RigidbodyConstraints.FreezeAll;
-            if (m_planerb.velocity.magnitude < maxSpeedForLanding && landingGearDeployed)
+            Time.timeScale = 0;
+            if (m_planerb.velocity.magnitude < maxSpeedForLanding && PlaneController.instance.landingActivated)
             {
                 WinPanel.SetActive(true);
             }
