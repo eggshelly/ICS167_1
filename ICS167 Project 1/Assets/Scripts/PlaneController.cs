@@ -27,8 +27,6 @@ public class PlaneController : MonoBehaviour
 
 
     public bool landingActivated;
-
-    bool landingGearDeployed = false;
     
     private void Awake()
     {
@@ -91,24 +89,4 @@ public class PlaneController : MonoBehaviour
         plane.transform.Rotate(verticalTorque, 0, 0);
     }
 
-    void DeployLandingGear()
-    {
-        //do smth else here;
-        landingGearDeployed = true;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.CompareTag("Road"))
-        {
-            if(m_planerb.velocity.magnitude < maxSpeedForLanding && landingGearDeployed)
-            {
-                //probably initiate the clapping sound and display a you win screen
-            }
-            else
-            {
-                Debug.Log("You ded lul");
-            }
-        }
-    }
 }
