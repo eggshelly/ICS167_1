@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] Transform target;
+    [SerializeField] float offset;
 
     void Awake()
     {
@@ -13,6 +14,6 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        transform.position = target.position;
+        transform.position = new Vector3(target.position.x, target.position.y, target.position.z + offset);
     }
 }
