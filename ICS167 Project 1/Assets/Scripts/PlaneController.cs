@@ -46,21 +46,23 @@ public class PlaneController : MonoBehaviour
 
     private void Update()
     {
-        print(m_planerb.velocity.z);
         Move();
     }
 
     private void Move()
     {
 
-        if (accelerateButton)
-            accel();
-        //else
-        if (deccelerateButton)
-            deccel();
+
+        //else if (deccelerateButton)
+        //    deccel();
         //else
         //    m_planerb.velocity = new Vector3(m_planerb.velocity.x, m_planerb.velocity.y, currentZvelocity);
-
+        if (accelerateButton)
+            accel();
+        else if (deccelerateButton)
+            deccel();
+        else
+            m_planerb.velocity = new Vector3(m_planerb.velocity.x, m_planerb.velocity.y, currentZvelocity);
         if (hLeverRight)
             tiltRight();
         if (hLeverLeft)

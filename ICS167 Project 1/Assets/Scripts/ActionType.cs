@@ -22,13 +22,23 @@ public class ActionType
         a = action;
     }
 
+    public void SetAction(Action a)
+    {
+        action = a;
+    }
+
+    public Action GetAction()
+    {
+        return action;
+    }
+
     public void Toggle()
     {
         if (action == Action.accel)
             PlaneController.instance.accelerateButton = !PlaneController.instance.accelerateButton;
 
         else if (action == Action.deccel)
-            PlaneController.instance.deccelerateButton = !PlaneController.instance.deccelerateButton;
+            PlaneController.instance.deccelerateButton = !PlaneController.instance.deccelerateButton;  
 
         else if (action == Action.up)
             PlaneController.instance.vLeverUp = !PlaneController.instance.vLeverUp;

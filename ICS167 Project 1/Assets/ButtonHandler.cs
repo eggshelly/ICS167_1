@@ -26,8 +26,11 @@ public class ButtonHandler : MonoBehaviour
         for (int i = 0; i < (actions.Count); i++)
         {
             ActionType temp = new ActionType(actions[i]);
+            temp.SetAction(actions[i]);
             ButtonActions.Add(temp);
         }
+
+        print(this.ToString() + "'s action: " + ButtonActions[0].GetAction());
     }
 
     void Update()
@@ -104,7 +107,6 @@ public class ButtonHandler : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player1") || other.gameObject.CompareTag("Player2"))
         {
-            print("ACTIVATE");
             state = State.canActivate;
         }
     }
