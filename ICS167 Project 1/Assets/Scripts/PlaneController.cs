@@ -54,7 +54,6 @@ public class PlaneController : MonoBehaviour
     {
 
 
-        print(currentZvelocity);
 
         if (accelerateButton)
             accel();
