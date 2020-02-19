@@ -17,7 +17,7 @@ public class NetworkArmMovement : NetworkBehaviour
     public bool press;
     public bool grab;
 
-
+    GameObject button;
 
 
     public void SetNetworkHand(PlayerHandMovement p)
@@ -30,7 +30,82 @@ public class NetworkArmMovement : NetworkBehaviour
         return armTarget;
     }
 
-    public void CheckInput()
+    public bool CheckInput()
+    {
+        if (press)
+        {
+            handDefault.SetActive(false);
+            handPress.SetActive(true);
+            return true;
+        }
+        else if (grab)
+        {
+            handDefault.SetActive(false);
+            handGrab.SetActive(true);
+            return true;
+        }
+        return false;
+    }
+
+    public void NoInput()
+    {
+        handPress.SetActive(false);
+        handGrab.SetActive(false);
+        handDefault.SetActive(true);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if(networkHand != null)
+        {
+            if (other.gameObject.CompareTag("PressButton"))
+            {
+                press = true;
+                button = other.gameObject;
+                networkHand.ChangeButtonState(button, true);
+            }
+            else if (other.gameObject.CompareTag("GrabButton"))
+            {
+                grab = true;
+                button = other.gameObject;
+                networkHand.ChangeButtonState(button, true);
+            }
+            UpdateBools();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(networkHand != null)
+        {
+            press = false;
+            grab = false;
+            UpdateBools();
+            networkHand.ChangeButtonState(button, false);
+        }
+    }
+
+
+    void UpdateBools()
+    {
+        if (networkHand != null)
+        {
+            networkHand.UpdateBools(this.gameObject, press, grab);
+        }
+    }
+
+    public void SetBools(GameObject arm, bool p, bool g)
+    {
+        if(arm == this.gameObject)
+        {
+            press = p;
+            grab = g;
+            RpcSetBools(arm, p, g);
+        }
+    }
+
+    [ClientRpc]
+    public void RpcCheckInput()
     {
         if (press)
         {
@@ -44,61 +119,40 @@ public class NetworkArmMovement : NetworkBehaviour
         }
     }
 
-    public void NoInput()
+
+    [ClientRpc]
+    public void RpcNoInput()
     {
         handPress.SetActive(false);
         handGrab.SetActive(false);
         handDefault.SetActive(true);
     }
 
-    private void OnTriggerStay(Collider other)
+    [ClientRpc]
+    public void RpcSetBools(GameObject arm, bool p, bool g)
     {
-        if (other.gameObject.CompareTag("PressButton"))
+        if (arm == this.gameObject)
         {
-            press = true;
-        }
-        else if (other.gameObject.CompareTag("GrabButton"))
-        {
-            grab = true;
-        }
-        UpdateBools();
-    }
-
-    void UpdateBools()
-    {
-        if (networkHand != null)
-        {
-            networkHand.Pressed(press);
-            networkHand.Grabbed(grab);
+            press = p;
+            grab = g;
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    public GameObject GetButton()
     {
-        press = false;
-        grab = false;
-        UpdateBools();
+        return button;
     }
 
-    public void Pressed(bool p)
+    public void PressButton()
     {
-        RpcPressed(p);
+        button.GetComponent<ButtonHandler>().ButtonUpdate();
     }
 
-    public void Grabbed(bool g)
-    {
-        RpcGrabbed(g);
-    }
 
     [ClientRpc]
-    public void RpcPressed(bool p)
+    public void RpcPressButton()
     {
-        this.press = p;
+        button.GetComponent<ButtonHandler>().ButtonUpdate();
     }
 
-    [ClientRpc]
-    public void RpcGrabbed(bool g)
-    {
-        this.grab = g;
-    }
 }

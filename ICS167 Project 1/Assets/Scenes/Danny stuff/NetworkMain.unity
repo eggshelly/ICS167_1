@@ -291,6 +291,7 @@ GameObject:
   - component: {fileID: 64125756}
   - component: {fileID: 64125757}
   - component: {fileID: 64125758}
+  - component: {fileID: 64125759}
   m_Layer: 8
   m_Name: accel
   m_TagString: PressButton
@@ -374,6 +375,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b416a6b0bc101584eb94ed1f0db4d002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   type: 0
   state: 0
   actions: 00000000
@@ -506,6 +509,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &64125759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64125752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 384313405
+  serverOnly: 0
+  m_AssetId: 
 --- !u!1 &87500013
 GameObject:
   m_ObjectHideFlags: 0
@@ -2200,6 +2218,7 @@ GameObject:
   - component: {fileID: 600110751}
   - component: {fileID: 600110753}
   - component: {fileID: 600110754}
+  - component: {fileID: 600110755}
   m_Layer: 0
   m_Name: vertical
   m_TagString: GrabButton
@@ -2283,6 +2302,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b416a6b0bc101584eb94ed1f0db4d002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   type: 1
   state: 0
   actions: 0400000005000000
@@ -2319,6 +2340,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2753615, y: 0.8820439, z: 0.2}
   m_Center: {x: -0.04856934, y: -0.23799255, z: 0}
+--- !u!114 &600110755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600110749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 3628195320
+  serverOnly: 0
+  m_AssetId: 
 --- !u!1001 &616067790
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5494,6 +5530,7 @@ GameObject:
   - component: {fileID: 1113111466}
   - component: {fileID: 1113111467}
   - component: {fileID: 1113111468}
+  - component: {fileID: 1113111469}
   m_Layer: 0
   m_Name: land
   m_TagString: PressButton
@@ -5577,10 +5614,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b416a6b0bc101584eb94ed1f0db4d002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   type: 0
   state: 0
   actions: 06000000
-  InteractButton: 46
+  InteractButton: 32
   LeverKeys: 
   off: {fileID: 21300000, guid: 4ae1bb348b2483147a962eacb502f489, type: 3}
   on: {fileID: 21300000, guid: 6734a009f5b28404788606a3604ed183, type: 3}
@@ -5709,6 +5748,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1113111469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113111462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 3990664634
+  serverOnly: 0
+  m_AssetId: 
 --- !u!1001 &1121063057
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5808,6 +5862,7 @@ GameObject:
   - component: {fileID: 1136400565}
   - component: {fileID: 1136400566}
   - component: {fileID: 1136400567}
+  - component: {fileID: 1136400568}
   m_Layer: 0
   m_Name: deccel
   m_TagString: PressButton
@@ -5891,10 +5946,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b416a6b0bc101584eb94ed1f0db4d002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   type: 0
   state: 0
   actions: 01000000
-  InteractButton: 46
+  InteractButton: 32
   LeverKeys: 
   off: {fileID: 21300000, guid: 4a441347c902105469773151a2dbc1ad, type: 3}
   on: {fileID: 21300000, guid: 3fa78b53a1f4bde479f8fee8b7aaae23, type: 3}
@@ -6023,6 +6080,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1136400568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136400561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 3108587259
+  serverOnly: 0
+  m_AssetId: 
 --- !u!4 &1141664647 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5379851084530942662, guid: eacc9c118f4d66945ab32473af334a2e,
@@ -15365,6 +15437,7 @@ GameObject:
   - component: {fileID: 2004273704}
   - component: {fileID: 2004273706}
   - component: {fileID: 2004273707}
+  - component: {fileID: 2004273708}
   m_Layer: 0
   m_Name: horizontal
   m_TagString: GrabButton
@@ -15448,10 +15521,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b416a6b0bc101584eb94ed1f0db4d002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   type: 1
   state: 0
   actions: 0300000002000000
-  InteractButton: 46
+  InteractButton: 32
   LeverKeys: 1401000013010000
   off: {fileID: 0}
   on: {fileID: 0}
@@ -15484,6 +15559,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.3725, y: 0.05676386, z: 0.2}
   m_Center: {x: 0, y: 0.008277052, z: 0}
+--- !u!114 &2004273708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004273702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 2213263477
+  serverOnly: 0
+  m_AssetId: 
 --- !u!1001 &2008432610
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15873,6 +15963,8 @@ GameObject:
   - component: {fileID: 2051224546}
   - component: {fileID: 2051224545}
   - component: {fileID: 2051224544}
+  - component: {fileID: 2051224550}
+  - component: {fileID: 2051224549}
   m_Layer: 8
   m_Name: Psuedo Plane
   m_TagString: Untagged
@@ -15970,6 +16062,40 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2051224549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051224543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 1
+  localPositionSensitivity: 0.01
+  localRotationSensitivity: 0.01
+  localScaleSensitivity: 0.01
+  compressRotation: 1
+--- !u!114 &2051224550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051224543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 916657400
+  serverOnly: 0
+  m_AssetId: 
 --- !u!1001 &2068714690
 PrefabInstance:
   m_ObjectHideFlags: 0

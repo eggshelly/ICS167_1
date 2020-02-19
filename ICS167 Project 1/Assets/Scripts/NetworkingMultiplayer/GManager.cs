@@ -13,6 +13,13 @@ public class GManager : NetworkBehaviour
 {
     public static GManager instance = null;
 
+
+
+    public delegate void PressButtonDelegate(GameObject button);
+
+    [SyncEvent]
+    public static event PressButtonDelegate EventPressButton;
+
     [SerializeField] GameObject LeftHand;
     [SerializeField] GameObject RightHand;
 
@@ -23,6 +30,12 @@ public class GManager : NetworkBehaviour
     private void Awake()
     {
         instance = this;
+    }
+
+    public static void InvokeEvent(GameObject button)
+    {
+        EventPressButton(button);
+        Debug.Log("Here");
     }
 
     

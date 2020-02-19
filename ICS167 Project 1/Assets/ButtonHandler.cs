@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine;
+using Mirror;
 
 public enum ButtonType { button, lever };
 public enum State { deactivated, canActivate, activated };
 
-public class ButtonHandler : MonoBehaviour
+public class ButtonHandler : NetworkBehaviour
 {
     [SerializeField] ButtonType type;
+    
     [SerializeField] State state;
     [SerializeField] List<Action> actions = new List<Action>();
 
@@ -24,7 +26,7 @@ public class ButtonHandler : MonoBehaviour
     private List<ActionType> ButtonActions; 
 
     void Awake()
-    {
+    { 
         ButtonActions = new List<ActionType>(actions.Count);
         state = State.deactivated;
 
@@ -44,7 +46,7 @@ public class ButtonHandler : MonoBehaviour
     void Update()
     {
         //LeverUpdate();
-        if (type == ButtonType.button && Input.GetKeyDown(InteractButton))
+        /*if (type == ButtonType.button && Input.GetKeyDown(InteractButton))
         {
             ButtonUpdate();
         }
@@ -70,24 +72,53 @@ public class ButtonHandler : MonoBehaviour
                 ButtonActions[1].Toggle();
                 state = State.canActivate;
             }
+        }*/
+    }
+
+
+
+    public void ButtonUpdate()
+    {
+        Debug.Log("Here Updating");
+        if (type == ButtonType.button)
+        {
+            if (state == State.canActivate)
+            {
+                ButtonActions[0].Toggle();
+                state = State.activated;
+                sprRend.sprite = on;
+                aud.PlayOneShot(aud.clip);
+            }
+            else if (state == State.activated)
+            {
+                ButtonActions[0].Toggle();
+                state = State.canActivate;
+                sprRend.sprite = off;
+                aud.PlayOneShot(aud.clip);
+            }
         }
     }
 
-    void ButtonUpdate()
+    [ClientRpc]
+    public void RpcButtonUpdate()
     {
-        if (state == State.canActivate)
+        Debug.Log("Recieinvg command");
+        if (type == ButtonType.button)
         {
-            ButtonActions[0].Toggle();
-            state = State.activated;
-            sprRend.sprite = on;
-            aud.PlayOneShot(aud.clip);
-        }
-        else if (state == State.activated)
-        {
-            ButtonActions[0].Toggle();
-            state = State.canActivate;
-            sprRend.sprite = off;
-            aud.PlayOneShot(aud.clip);
+            if (state == State.canActivate)
+            {
+                ButtonActions[0].Toggle();
+                state = State.activated;
+                sprRend.sprite = on;
+                aud.PlayOneShot(aud.clip);
+            }
+            else if (state == State.activated)
+            {
+                ButtonActions[0].Toggle();
+                state = State.canActivate;
+                sprRend.sprite = off;
+                aud.PlayOneShot(aud.clip);
+            }
         }
     }
 
@@ -115,20 +146,36 @@ public class ButtonHandler : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+
+    public void ChangeState(GameObject button, bool isInside)
     {
-        if (other.gameObject.CompareTag("Player1") || other.gameObject.CompareTag("Player2"))
-        {
-            state = State.canActivate;
-        }
+        Change(button, isInside);
+        RpcChangeState(button, isInside);
     }
 
-    private void OnTriggerExit(Collider other)
+    [ClientRpc]
+    public void RpcChangeState(GameObject button, bool isInside)
     {
-        if (other.gameObject.CompareTag("Player1") || other.gameObject.CompareTag("Player2"))
+        Change(button, isInside);
+    }
+
+    void Change(GameObject button, bool isInside)
+    {
+        if (button == this.gameObject)
         {
-            if (state != State.activated)
+            if (isInside)
+            {
+                state = (state == State.activated ? State.activated : State.canActivate);
+            }
+            else
+            {
+                if(state == State.activated)
+                {
+                    ButtonActions[0].Toggle();
+                }
                 state = State.deactivated;
+                
+            }
         }
     }
 }

@@ -12,8 +12,11 @@ public class PlayerHandMovement : NetworkBehaviour
     [SyncVar(hook = nameof(SyncHand))]
     GameObject hand = null;
 
+
     GameObject armTarget;
     NetworkArmMovement arm;
+
+   
 
     KeyCode inputKey = KeyCode.Space;
 
@@ -97,17 +100,24 @@ public class PlayerHandMovement : NetworkBehaviour
 
     void GetInput()
     {
-        if (arm != null)
+        if (arm != null && hasAuthority)
         {
-            if (Input.GetKey(inputKey) && hasAuthority)
+            if (Input.GetKeyDown(inputKey))
             {
-                arm.CheckInput();
-                CmdCheckInput();
+                if (arm.CheckInput())
+                {
+                    arm.PressButton();
+                    CmdCheckInput();
+                    PressButton();
+                    Debug.Log("Arm is over button");
+                }
             }
-            else
+            else if(Input.GetKeyUp(inputKey))
             {
+                arm.PressButton();
                 arm.NoInput();
                 CmdNoInput();
+                PressButton();
             }
         }
     }
@@ -116,35 +126,56 @@ public class PlayerHandMovement : NetworkBehaviour
     public void CmdCheckInput()
     {
         this.arm.CheckInput();
+        this.arm.RpcCheckInput();
     }
 
     [Command]
     public void CmdNoInput()
     {
         this.arm.NoInput();
+        this.arm.RpcNoInput();
     }
 
-    public void Pressed(bool p)
+    public void PressButton()
     {
-        CmdPressed(p);
-    }
-
-    [Command]
-    public void CmdPressed(bool p)
-    {
-        arm.Pressed(p);
-    }
-
-
-    public void Grabbed(bool g)
-    {
-        CmdGrabbed(g);
+        GameObject button = arm.GetButton();
+        if(button != null)
+        {
+            button.GetComponent<ButtonHandler>().ButtonUpdate();
+            CmdPressButton(button);
+        }
     }
 
     [Command]
-    public void CmdGrabbed(bool g)
+    public void CmdPressButton(GameObject button)
     {
-        arm.Grabbed(g);
+        button.GetComponent<ButtonHandler>().ButtonUpdate();
+        button.GetComponent<ButtonHandler>().RpcButtonUpdate();
+    }
+
+    public void ChangeButtonState(GameObject button, bool isInside)
+    {
+        if (button != null)
+        {
+            CmdChangeButtonState(button, isInside);
+        }
+    }
+
+    [Command]
+    public void CmdChangeButtonState(GameObject button, bool isInside)
+    {
+        button.GetComponent<ButtonHandler>().ChangeState(button, isInside);
+    }
+
+    public void UpdateBools(GameObject arm, bool p, bool g)
+    {
+        CmdUpdateBools(arm, p, g);
+    }
+
+    [Command]
+    public void CmdUpdateBools(GameObject arm, bool p, bool g)
+    {
+        arm.GetComponent<NetworkArmMovement>().SetBools(arm, p, g);
     }
 
     #endregion
