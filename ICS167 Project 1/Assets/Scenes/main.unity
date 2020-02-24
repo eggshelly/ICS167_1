@@ -338,6 +338,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b416a6b0bc101584eb94ed1f0db4d002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   type: 0
   state: 0
   actions: 00000000
@@ -2115,6 +2117,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b416a6b0bc101584eb94ed1f0db4d002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   type: 1
   state: 0
   actions: 0400000005000000
@@ -5409,6 +5413,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b416a6b0bc101584eb94ed1f0db4d002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   type: 0
   state: 0
   actions: 06000000
@@ -5723,6 +5729,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b416a6b0bc101584eb94ed1f0db4d002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   type: 0
   state: 0
   actions: 01000000
@@ -11888,7 +11896,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a1c52b782f40de94ebb6a0448647d259, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 103c012ddc8f6644da8400b5e8676d89, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -15249,6 +15257,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b416a6b0bc101584eb94ed1f0db4d002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   type: 1
   state: 0
   actions: 0300000002000000
