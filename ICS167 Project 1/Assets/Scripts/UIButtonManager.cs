@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class UIButtonManager : MonoBehaviour
 {
+    [SerializeField] GameObject playPannel;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        playPannel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -16,7 +18,11 @@ public class UIButtonManager : MonoBehaviour
         
     }
 
-   public void playGame()
+   public void playLocal()
+    {
+        Application.LoadLevel(1);
+    }
+    public void playNetwork()
     {
         Application.LoadLevel(1);
     }
@@ -24,6 +30,9 @@ public class UIButtonManager : MonoBehaviour
     {
         Application.LoadLevel(0);
     }
-
+    public void activatePlayPannel()
+    {
+        playPannel.SetActive(true);
+    }
 
 }
