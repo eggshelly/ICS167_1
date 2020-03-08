@@ -46,9 +46,4 @@ public class HandScript : NetworkBehaviour
         player.GetComponent<PlayerHandMovement>().AssignHand(this.gameObject);
     }
 
-
-    public bool isLeftHand()
-    {
-        return leftHand;
-    }
 }
