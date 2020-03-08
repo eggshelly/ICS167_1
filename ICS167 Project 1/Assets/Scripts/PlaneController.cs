@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine;
+using TMPro;
 
 public class PlaneController : MonoBehaviour
 {
@@ -16,8 +17,12 @@ public class PlaneController : MonoBehaviour
     [SerializeField] float horizontalTorque = 1f;
     [SerializeField] float maxSpeedForLanding;
     //[SerializeField] float torqueCap = 5f;
+
     private Rigidbody m_planerb;
     public float currentZvelocity;
+
+    [SerializeField] TextMeshProUGUI speedTxt;
+    [SerializeField] TextMeshProUGUI altitudeTxt;
 
 
     //TEST
@@ -38,15 +43,16 @@ public class PlaneController : MonoBehaviour
         if (instance == null)
             instance = this;
         m_planerb = plane.GetComponent<Rigidbody>();
-       
-    }
-    private void Start()
-    {
-            
+
+        speedTxt.text = currentZvelocity.ToString();
+        altitudeTxt.text = m_planerb.transform.position.y.ToString();
+
+
     }
 
     private void Update()
     {
+        UpdateText();
         Move();
     }
 
@@ -69,6 +75,12 @@ public class PlaneController : MonoBehaviour
             tiltUp();
         if (vLeverDown)
             tiltDown();
+    }
+
+    private void UpdateText()
+    {
+        speedTxt.text    = currentZvelocity.ToString("0.00");
+        altitudeTxt.text = m_planerb.transform.position.y.ToString("0.00");
     }
 
     private void accel()
