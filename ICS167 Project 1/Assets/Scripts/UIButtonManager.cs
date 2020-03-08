@@ -1,16 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIButtonManager : MonoBehaviour
 {
-    [SerializeField] GameObject playPannel;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        playPannel.SetActive(false);
-    }
 
     // Update is called once per frame
     void Update()
@@ -18,21 +13,23 @@ public class UIButtonManager : MonoBehaviour
         
     }
 
-   public void playLocal()
+    public void LoadScene(int index)
     {
-        Application.LoadLevel(1);
+        Debug.Log(index);
+        SceneManager.LoadScene(index);
+    }
+
+   public void playLocal()
+    { 
+        SceneManager.LoadScene(SceneManager.GetSceneByName("main").buildIndex);
     }
     public void playNetwork()
     {
-        Application.LoadLevel(1);
+        SceneManager.LoadScene(SceneManager.GetSceneByName("Offline").buildIndex);
     }
     public void gotoMainMenu()
     {
-        Application.LoadLevel(0);
-    }
-    public void activatePlayPannel()
-    {
-        playPannel.SetActive(true);
+        SceneManager.LoadScene(SceneManager.GetSceneByName("title").buildIndex);
     }
 
 }
