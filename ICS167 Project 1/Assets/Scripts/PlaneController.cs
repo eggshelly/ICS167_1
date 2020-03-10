@@ -47,15 +47,15 @@ public class PlaneController : MonoBehaviour
         m_planerb = plane.GetComponent<Rigidbody>();
         startTransform = m_planerb.transform;
 
-        speedTxt.text = currentZvelocity.ToString();
-        altitudeTxt.text = m_planerb.transform.position.y.ToString();
+        //speedTxt.text = currentZvelocity.ToString();
+        //altitudeTxt.text = m_planerb.transform.position.y.ToString();
     }
 
     private void Update()
     {
         if (!buttonPushed)
             StallPlane();
-        UpdateText();
+        //UpdateText();
         Move();
     }
 
