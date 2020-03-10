@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine;
+using TMPro;
 
 public class PlaneController : MonoBehaviour
 {
-
     public static PlaneController instance;
 
     [SerializeField] GameObject plane;
@@ -16,8 +16,15 @@ public class PlaneController : MonoBehaviour
     [SerializeField] float horizontalTorque = 1f;
     [SerializeField] float maxSpeedForLanding;
     //[SerializeField] float torqueCap = 5f;
+
     private Rigidbody m_planerb;
     public float currentZvelocity;
+
+    public bool buttonPushed = false;
+    private Transform startTransform;
+
+    [SerializeField] TextMeshProUGUI speedTxt;
+    [SerializeField] TextMeshProUGUI altitudeTxt;
 
 
     //TEST
@@ -38,23 +45,28 @@ public class PlaneController : MonoBehaviour
         if (instance == null)
             instance = this;
         m_planerb = plane.GetComponent<Rigidbody>();
-       
-    }
-    private void Start()
-    {
-            
+        startTransform = m_planerb.transform;
+
+        //speedTxt.text = currentZvelocity.ToString();
+        //altitudeTxt.text = m_planerb.transform.position.y.ToString();
     }
 
     private void Update()
     {
+        if (!buttonPushed)
+            StallPlane();
+        //UpdateText();
         Move();
+    }
+
+    private void StallPlane()
+    {
+        if (m_planerb.transform.position.y <= 4.5f)
+            m_planerb.AddForce(startTransform.up * speed * 5);
     }
 
     private void Move()
     {
-
-
-
         if (accelerateButton)
             accel();
         else if (deccelerateButton)
@@ -71,8 +83,15 @@ public class PlaneController : MonoBehaviour
             tiltDown();
     }
 
+    private void UpdateText()
+    {
+        speedTxt.text    = currentZvelocity.ToString("0.00");
+        altitudeTxt.text = m_planerb.transform.position.y.ToString("0.00");
+    }
+
     private void accel()
     {
+        buttonPushed = true;
         Vector3 accelVector = transform.forward * speed;
         if (accelVector.z > speedcap)
             accelVector = new Vector3(accelVector.x, accelVector.y, speedcap);
@@ -83,6 +102,7 @@ public class PlaneController : MonoBehaviour
 
     private void deccel()
     {
+        buttonPushed = true;
         Vector3 deccelVector = transform.forward * -speed;
         if (deccelVector.z < 0)
             deccelVector = new Vector3(deccelVector.x, deccelVector.y, 0);
@@ -96,24 +116,28 @@ public class PlaneController : MonoBehaviour
 
     private void tiltRight()
     {
+        buttonPushed = true;
         m_planerb.AddForce(transform.right * speed);
         plane.transform.Rotate(0, horizontalTorque, 0);
     }
 
     private void tiltLeft()
     {
+        buttonPushed = true;
         m_planerb.AddForce(transform.right * -speed);
         plane.transform.Rotate(0, -horizontalTorque, 0);
     }
 
     private void tiltUp()
     {
+        buttonPushed = true;
         m_planerb.AddForce(transform.up * speed);
         plane.transform.Rotate(-verticalTorque,0,0);
     }
 
     private void tiltDown()
     {
+        buttonPushed = true;
         m_planerb.AddForce(transform.up * -speed);
         plane.transform.Rotate(verticalTorque, 0, 0);
     }

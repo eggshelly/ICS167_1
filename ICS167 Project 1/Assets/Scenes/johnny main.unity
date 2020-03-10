@@ -255,7 +255,6 @@ GameObject:
   - component: {fileID: 64125756}
   - component: {fileID: 64125757}
   - component: {fileID: 64125758}
-  - component: {fileID: 64125759}
   m_Layer: 8
   m_Name: accel
   m_TagString: PressButton
@@ -334,7 +333,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 64125752}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b416a6b0bc101584eb94ed1f0db4d002, type: 3}
   m_Name: 
@@ -473,25 +472,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &64125759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 64125752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f35284ea8427cb43877faaf96399c2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  state: 0
-  actions: 00000000
-  InteractButton: 32
-  LeverKeys: 
-  off: {fileID: 21300000, guid: 39bfdb1a4777afd4f99b59319ea6b9e7, type: 3}
-  on: {fileID: 21300000, guid: 348f187a0deb7cf439a845cbe24cbbfb, type: 3}
 --- !u!1 &87500013
 GameObject:
   m_ObjectHideFlags: 0
@@ -2154,7 +2134,6 @@ GameObject:
   - component: {fileID: 600110751}
   - component: {fileID: 600110753}
   - component: {fileID: 600110754}
-  - component: {fileID: 600110755}
   m_Layer: 0
   m_Name: vertical
   m_TagString: GrabButton
@@ -2233,7 +2212,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 600110749}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b416a6b0bc101584eb94ed1f0db4d002, type: 3}
   m_Name: 
@@ -2261,7 +2240,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 110
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!65 &600110754
 BoxCollider:
@@ -2276,25 +2255,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2753615, y: 0.8820439, z: 0.2}
   m_Center: {x: -0.04856934, y: -0.23799255, z: 0}
---- !u!114 &600110755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 600110749}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f35284ea8427cb43877faaf96399c2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 1
-  state: 0
-  actions: 0400000005000000
-  InteractButton: 32
-  LeverKeys: 7700000073000000
-  off: {fileID: 0}
-  on: {fileID: 0}
 --- !u!1001 &616067790
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2917,7 +2877,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 133, y: -294}
+  m_AnchoredPosition: {x: 155, y: -442}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &754266546
@@ -2966,8 +2926,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 56.19
+  m_fontSizeBase: 56.19
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5336,9 +5296,6 @@ MonoBehaviour:
   horizontalTorque: 0.5
   maxSpeedForLanding: 0
   currentZvelocity: 0
-  buttonPushed: 0
-  speedTxt: {fileID: 1696720030}
-  altitudeTxt: {fileID: 754266546}
   accelerateButton: 0
   deccelerateButton: 0
   hLeverRight: 0
@@ -5629,7 +5586,6 @@ GameObject:
   - component: {fileID: 1113111466}
   - component: {fileID: 1113111467}
   - component: {fileID: 1113111468}
-  - component: {fileID: 1113111469}
   m_Layer: 0
   m_Name: land
   m_TagString: PressButton
@@ -5847,25 +5803,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1113111469
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1113111462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f35284ea8427cb43877faaf96399c2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  state: 0
-  actions: 00000000
-  InteractButton: 46
-  LeverKeys: 
-  off: {fileID: 21300000, guid: 4ae1bb348b2483147a962eacb502f489, type: 3}
-  on: {fileID: 21300000, guid: 6734a009f5b28404788606a3604ed183, type: 3}
 --- !u!1001 &1121063057
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5965,7 +5902,6 @@ GameObject:
   - component: {fileID: 1136400565}
   - component: {fileID: 1136400566}
   - component: {fileID: 1136400567}
-  - component: {fileID: 1136400568}
   m_Layer: 0
   m_Name: deccel
   m_TagString: PressButton
@@ -6044,7 +5980,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1136400561}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b416a6b0bc101584eb94ed1f0db4d002, type: 3}
   m_Name: 
@@ -6072,7 +6008,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 124
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!65 &1136400566
 BoxCollider:
@@ -6183,25 +6119,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1136400568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1136400561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f35284ea8427cb43877faaf96399c2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  state: 0
-  actions: 01000000
-  InteractButton: 0
-  LeverKeys: 
-  off: {fileID: 21300000, guid: 4a441347c902105469773151a2dbc1ad, type: 3}
-  on: {fileID: 21300000, guid: 3fa78b53a1f4bde479f8fee8b7aaae23, type: 3}
 --- !u!4 &1141664647 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5379851084530942662, guid: eacc9c118f4d66945ab32473af334a2e,
@@ -12235,7 +12152,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 103c012ddc8f6644da8400b5e8676d89, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a1c52b782f40de94ebb6a0448647d259, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -13705,7 +13622,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 128, y: -200}
+  m_AnchoredPosition: {x: 135, y: -301}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1696720030
@@ -13754,8 +13671,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 56.19
+  m_fontSizeBase: 56.19
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -15669,7 +15586,6 @@ GameObject:
   - component: {fileID: 2004273704}
   - component: {fileID: 2004273706}
   - component: {fileID: 2004273707}
-  - component: {fileID: 2004273708}
   m_Layer: 0
   m_Name: horizontal
   m_TagString: GrabButton
@@ -15748,7 +15664,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2004273702}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b416a6b0bc101584eb94ed1f0db4d002, type: 3}
   m_Name: 
@@ -15776,7 +15692,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 122
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!65 &2004273707
 BoxCollider:
@@ -15791,25 +15707,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.3725, y: 0.05676386, z: 0.2}
   m_Center: {x: 0, y: 0.008277052, z: 0}
---- !u!114 &2004273708
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2004273702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f35284ea8427cb43877faaf96399c2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 1
-  state: 0
-  actions: 0300000002000000
-  InteractButton: 46
-  LeverKeys: 1401000013010000
-  off: {fileID: 0}
-  on: {fileID: 0}
 --- !u!1001 &2008432610
 PrefabInstance:
   m_ObjectHideFlags: 0

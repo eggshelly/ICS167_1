@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine;
-using Mirror;
 
-public enum ButtonType { button, lever };
-public enum State { deactivated, canActivate, activated };
+//public enum ButtonType { button, lever };
+//public enum State { deactivated, canActivate, activated };
 
-public class ButtonHandler : NetworkBehaviour
+public class LocalButtonHandler : MonoBehaviour
 {
     [SerializeField] ButtonType type;
-
     [SerializeField] State state;
     [SerializeField] List<Action> actions = new List<Action>();
 
@@ -45,8 +43,8 @@ public class ButtonHandler : NetworkBehaviour
 
     void Update()
     {
-        //LeverUpdate();
-        /*if (type == ButtonType.button && Input.GetKeyDown(InteractButton))
+
+        if (type == ButtonType.button && Input.GetKeyDown(InteractButton))
         {
             ButtonUpdate();
         }
@@ -72,53 +70,24 @@ public class ButtonHandler : NetworkBehaviour
                 ButtonActions[1].Toggle();
                 state = State.canActivate;
             }
-        }*/
-    }
-
-
-
-    public void ButtonUpdate()
-    {
-        Debug.Log("Here Updating");
-        if (type == ButtonType.button)
-        {
-            if (state == State.canActivate)
-            {
-                ButtonActions[0].Toggle();
-                state = State.activated;
-                sprRend.sprite = on;
-                aud.PlayOneShot(aud.clip);
-            }
-            else if (state == State.activated)
-            {
-                ButtonActions[0].Toggle();
-                state = State.canActivate;
-                sprRend.sprite = off;
-                aud.PlayOneShot(aud.clip);
-            }
         }
     }
 
-    [ClientRpc]
-    public void RpcButtonUpdate()
+    void ButtonUpdate()
     {
-        Debug.Log("Recieinvg command");
-        if (type == ButtonType.button)
+        if (state == State.canActivate)
         {
-            if (state == State.canActivate)
-            {
-                ButtonActions[0].Toggle();
-                state = State.activated;
-                sprRend.sprite = on;
-                aud.PlayOneShot(aud.clip);
-            }
-            else if (state == State.activated)
-            {
-                ButtonActions[0].Toggle();
-                state = State.canActivate;
-                sprRend.sprite = off;
-                aud.PlayOneShot(aud.clip);
-            }
+            ButtonActions[0].Toggle();
+            state = State.activated;
+            sprRend.sprite = on;
+            aud.PlayOneShot(aud.clip);
+        }
+        else if (state == State.activated)
+        {
+            ButtonActions[0].Toggle();
+            state = State.canActivate;
+            sprRend.sprite = off;
+            aud.PlayOneShot(aud.clip);
         }
     }
 
@@ -134,7 +103,7 @@ public class ButtonHandler : NetworkBehaviour
             ButtonActions[1].Toggle();
             state = State.activated;
         }
-        else if (state == State.activated && Input.GetKey(LeverKeys[1]))
+        else if (state == State.activated && Input.GetKey(LeverKeys[0]))
         {
             ButtonActions[0].Toggle();
             state = State.canActivate;
@@ -146,36 +115,20 @@ public class ButtonHandler : NetworkBehaviour
         }
     }
 
-
-    public void ChangeState(GameObject button, bool isInside)
+    private void OnTriggerEnter(Collider other)
     {
-        Change(button, isInside);
-        RpcChangeState(button, isInside);
-    }
-
-    [ClientRpc]
-    public void RpcChangeState(GameObject button, bool isInside)
-    {
-        Change(button, isInside);
-    }
-
-    void Change(GameObject button, bool isInside)
-    {
-        if (button == this.gameObject)
+        if (other.gameObject.CompareTag("Player1") || other.gameObject.CompareTag("Player2"))
         {
-            if (isInside)
-            {
-                state = (state == State.activated ? State.activated : State.canActivate);
-            }
-            else
-            {
-                if (state == State.activated)
-                {
-                    ButtonActions[0].Toggle();
-                }
-                state = State.deactivated;
+            state = State.canActivate;
+        }
+    }
 
-            }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player1") || other.gameObject.CompareTag("Player2"))
+        {
+            if (state != State.activated)
+                state = State.deactivated;
         }
     }
 }
