@@ -5,7 +5,7 @@ using Mirror;
 
 public class NetworkArmMovement : NetworkBehaviour
 {
-    [SerializeField] public GameObject armTarget;
+    [SerializeField] public NetworkHandTarget armTarget;
     [SerializeField] public GameObject handDefault;
     [SerializeField] public GameObject handGrab;
     [SerializeField] public GameObject handPress;
@@ -25,7 +25,7 @@ public class NetworkArmMovement : NetworkBehaviour
         networkHand = p;
     }
 
-    public GameObject GetArmTarget()
+    public NetworkHandTarget GetArmTarget()
     {
         return armTarget;
     }

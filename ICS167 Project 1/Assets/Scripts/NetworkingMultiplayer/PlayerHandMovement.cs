@@ -13,7 +13,7 @@ public class PlayerHandMovement : NetworkBehaviour
     GameObject hand = null;
 
 
-    GameObject armTarget;
+    NetworkHandTarget armTarget;
     NetworkArmMovement arm;
 
    
@@ -51,46 +51,29 @@ public class PlayerHandMovement : NetworkBehaviour
     {
         if (hasAuthority && armTarget != null)
         {
+            float vert = Input.GetAxisRaw("Vertical");
+            float hor = Input.GetAxisRaw("Horizontal");
+            Vector3 pos = new Vector3(hor, vert, armTarget.gameObject.transform.position.z) * speed;
+            armTarget.Move(vert, hor, speed);
 
-            armTarget.transform.Translate(new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * speed);
-
-
-
-            //Clamp arm targets to current camera space
-            float cameraOffset = armTarget.transform.position.z - Camera.main.transform.position.z;
-
-            float leftBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, cameraOffset)).x;
-            float rightBorder = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, cameraOffset)).x;
-            float topBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, cameraOffset)).y;
-            float bottomBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 1, cameraOffset)).y;
-
-            armTarget.transform.position = new Vector3( //restrict arm target to camera border bounds
-                Mathf.Clamp(armTarget.transform.position.x, leftBorder, rightBorder),
-                Mathf.Clamp(armTarget.transform.position.y, topBorder, bottomBorder),
-                armTarget.transform.position.z
-            );
-
-            CmdUpdateArmLocation(armTarget, armTarget.transform.position);
+            CmdUpdateArmLocation(armTarget.gameObject, vert, hor, speed);
         }
     }
 
     [Command]
-    public void CmdUpdateArmLocation(GameObject aT, Vector3 pos)
+    public void CmdUpdateArmLocation(GameObject aT, float vert, float hor, float speed)
     {
-        if(this.armTarget == aT)
+        if(this.armTarget.gameObject == aT)
         {
-            this.armTarget.transform.position = pos;
-            RpcUpdateArmLocation(aT, pos);
+            this.armTarget.Move(vert, hor, speed);
+            RpcUpdateArmLocation(aT, vert, hor, speed);
         }
     }
 
     [ClientRpc]
-    public void RpcUpdateArmLocation(GameObject aT, Vector3 pos)
+    public void RpcUpdateArmLocation(GameObject aT, float vert, float hor, float speed)
     {
-        if (this.armTarget == aT)
-        {
-            this.armTarget.transform.position = pos;
-        }
+        this.armTarget.Move(vert, hor, speed);
     }
 
     #endregion
@@ -224,3 +207,4 @@ public class PlayerHandMovement : NetworkBehaviour
     }
     #endregion
 }
+

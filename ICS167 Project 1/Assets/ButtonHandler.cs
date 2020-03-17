@@ -97,6 +97,9 @@ public class ButtonHandler : NetworkBehaviour
                 aud.PlayOneShot(aud.clip);
             }
         }
+        else if (type == ButtonType.lever)
+        {
+        }
     }
 
     [ClientRpc]
