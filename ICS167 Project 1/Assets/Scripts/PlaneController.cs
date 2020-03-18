@@ -85,8 +85,8 @@ public class PlaneController : MonoBehaviour
 
     private void UpdateText()
     {
-        speedTxt.text    = currentZvelocity.ToString("0.00");
-        altitudeTxt.text = m_planerb.transform.position.y.ToString("0.00");
+        speedTxt.text    = currentZvelocity.ToString("0.0");
+        altitudeTxt.text = m_planerb.transform.position.y.ToString("0.0");
     }
 
     private void accel()
