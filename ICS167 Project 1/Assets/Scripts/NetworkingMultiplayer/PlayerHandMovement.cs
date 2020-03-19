@@ -73,7 +73,8 @@ public class PlayerHandMovement : NetworkBehaviour
     [ClientRpc]
     public void RpcUpdateArmLocation(GameObject aT, float vert, float hor, float speed)
     {
-        this.armTarget.Move(vert, hor, speed);
+        if(aT == armTarget.gameObject)
+            aT.GetComponent<NetworkHandTarget>().Move(vert, hor, speed);
     }
 
     #endregion
