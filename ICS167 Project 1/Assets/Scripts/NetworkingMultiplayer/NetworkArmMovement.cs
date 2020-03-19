@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
+
 public class NetworkArmMovement : NetworkBehaviour
 {
     [SerializeField] public NetworkHandTarget armTarget;
@@ -28,6 +29,11 @@ public class NetworkArmMovement : NetworkBehaviour
     public NetworkHandTarget GetArmTarget()
     {
         return armTarget;
+    }
+
+    public ButtonType GetButtonType()
+    {
+        return (button == null ? ButtonType.none : button.GetComponent<ButtonHandler>().GetButtonType());   
     }
 
     public bool CheckInput()
@@ -78,11 +84,23 @@ public class NetworkArmMovement : NetworkBehaviour
     {
         if(networkHand != null)
         {
+            Debug.Log("Leaving Button");
             press = false;
             grab = false;
             UpdateBools();
             networkHand.ChangeButtonState(button, false);
         }
+    }
+
+    public void AttachButton(GameObject button)
+    {
+        this.button = button;
+    }
+
+    [ClientRpc]
+    public void RpcAttachButton(GameObject button)
+    {
+        this.button = button;
     }
 
 
@@ -145,9 +163,20 @@ public class NetworkArmMovement : NetworkBehaviour
 
     public void PressButton()
     {
+        Debug.Log(this.gameObject.name);
         button.GetComponent<ButtonHandler>().ButtonUpdate();
     }
+    
+    public int CheckLeverPull()
+    {
+        return button.GetComponent<ButtonHandler>().LeverUpdate();
+    }
 
+    public void PullLever(int num)
+    {
+        Debug.Log(this.gameObject.name);
+        button.GetComponent<ButtonHandler>().LeverPulled(num);
+    }
 
     [ClientRpc]
     public void RpcPressButton()
@@ -155,4 +184,10 @@ public class NetworkArmMovement : NetworkBehaviour
         button.GetComponent<ButtonHandler>().ButtonUpdate();
     }
 
+    [ClientRpc]
+    public void RpcPullLever(int num)
+    {
+        Debug.Log(this.gameObject.name);
+        button.GetComponent<ButtonHandler>().LeverPulled(num);
+    }
 }

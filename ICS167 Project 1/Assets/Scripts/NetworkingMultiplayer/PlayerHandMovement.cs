@@ -16,6 +16,7 @@ public class PlayerHandMovement : NetworkBehaviour
     NetworkHandTarget armTarget;
     NetworkArmMovement arm;
 
+    bool pressing;
    
 
     KeyCode inputKey = KeyCode.Space;
@@ -53,7 +54,6 @@ public class PlayerHandMovement : NetworkBehaviour
         {
             float vert = Input.GetAxisRaw("Vertical");
             float hor = Input.GetAxisRaw("Horizontal");
-            Vector3 pos = new Vector3(hor, vert, armTarget.gameObject.transform.position.z) * speed;
             armTarget.Move(vert, hor, speed);
 
             CmdUpdateArmLocation(armTarget.gameObject, vert, hor, speed);
@@ -83,24 +83,37 @@ public class PlayerHandMovement : NetworkBehaviour
 
     void GetInput()
     {
+
         if (arm != null && hasAuthority)
         {
-            if (Input.GetKeyDown(inputKey))
+            ButtonType t = arm.GetButtonType();
+            if (t == ButtonType.button && Input.GetKeyDown(inputKey))
             {
                 if (arm.CheckInput())
-                {
-                    arm.PressButton();
+                { 
+                    //arm.PressButton();
                     CmdCheckInput();
-                    PressButton();
+                    CmdPressButton(0, -1);
                     Debug.Log("Arm is over button");
+                }
+            }
+            else if(t == ButtonType.lever && Input.GetKey(inputKey))
+            { 
+                if (arm.CheckInput())
+                {
+                    CmdCheckInput();
+                    int num;
+                    if ((num = arm.CheckLeverPull()) >= 0)
+                    {
+                        //arm.PullLever(num);
+                        CmdPressButton(1, num);
+                    }
                 }
             }
             else if(Input.GetKeyUp(inputKey))
             {
-                arm.PressButton();
                 arm.NoInput();
                 CmdNoInput();
-                PressButton();
             }
         }
     }
@@ -119,27 +132,28 @@ public class PlayerHandMovement : NetworkBehaviour
         this.arm.RpcNoInput();
     }
 
-    public void PressButton()
-    {
-        GameObject button = arm.GetButton();
-        if(button != null)
-        {
-            button.GetComponent<ButtonHandler>().ButtonUpdate();
-            CmdPressButton(button);
-        }
-    }
 
     [Command]
-    public void CmdPressButton(GameObject button)
+    public void CmdPressButton(int type, int num)
     {
-        button.GetComponent<ButtonHandler>().ButtonUpdate();
-        button.GetComponent<ButtonHandler>().RpcButtonUpdate();
+        if (type == 0)
+        {
+            arm.PressButton();
+            arm.RpcPressButton();
+        }
+        else if(type == 1)
+        {
+            arm.PullLever(num);
+            arm.RpcPullLever(num);
+        }
     }
 
     public void ChangeButtonState(GameObject button, bool isInside)
     {
         if (button != null)
         {
+            button.GetComponent<ButtonHandler>().ChangeState(button, isInside);
+            arm.AttachButton(isInside ? button : null);
             CmdChangeButtonState(button, isInside);
         }
     }
@@ -147,8 +161,13 @@ public class PlayerHandMovement : NetworkBehaviour
     [Command]
     public void CmdChangeButtonState(GameObject button, bool isInside)
     {
-        button.GetComponent<ButtonHandler>().ChangeState(button, isInside);
+        ButtonHandler b = button.GetComponent<ButtonHandler>();
+        b.ChangeState(button, isInside);
+        b.RpcChangeState(button, isInside);
+        arm.AttachButton(isInside ? button : null);
+        arm.RpcAttachButton(isInside ? button : null);
     }
+
 
     public void UpdateBools(GameObject arm, bool p, bool g)
     {
