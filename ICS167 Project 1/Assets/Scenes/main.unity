@@ -344,10 +344,12 @@ MonoBehaviour:
   type: 0
   state: 0
   actions: 00000000
+  actionSprite: []
+  canActivateSpriteOn: []
+  canActivateSpriteOff: {fileID: 0}
+  deactivatedSprite: {fileID: 0}
   InteractButton: 32
   LeverKeys: 
-  off: {fileID: 21300000, guid: 39bfdb1a4777afd4f99b59319ea6b9e7, type: 3}
-  on: {fileID: 21300000, guid: 348f187a0deb7cf439a845cbe24cbbfb, type: 3}
 --- !u!54 &64125756
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2248,10 +2250,12 @@ MonoBehaviour:
   type: 1
   state: 0
   actions: 0400000005000000
+  actionSprite: []
+  canActivateSpriteOn: []
+  canActivateSpriteOff: {fileID: 0}
+  deactivatedSprite: {fileID: 0}
   InteractButton: 32
   LeverKeys: 7700000073000000
-  off: {fileID: 0}
-  on: {fileID: 0}
 --- !u!54 &600110753
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5730,10 +5734,12 @@ MonoBehaviour:
   type: 0
   state: 0
   actions: 06000000
+  actionSprite: []
+  canActivateSpriteOn: []
+  canActivateSpriteOff: {fileID: 0}
+  deactivatedSprite: {fileID: 0}
   InteractButton: 46
   LeverKeys: 
-  off: {fileID: 21300000, guid: 4ae1bb348b2483147a962eacb502f489, type: 3}
-  on: {fileID: 21300000, guid: 6734a009f5b28404788606a3604ed183, type: 3}
 --- !u!54 &1113111466
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6071,10 +6077,12 @@ MonoBehaviour:
   type: 0
   state: 0
   actions: 01000000
+  actionSprite: []
+  canActivateSpriteOn: []
+  canActivateSpriteOff: {fileID: 0}
+  deactivatedSprite: {fileID: 0}
   InteractButton: 46
   LeverKeys: 
-  off: {fileID: 21300000, guid: 4a441347c902105469773151a2dbc1ad, type: 3}
-  on: {fileID: 21300000, guid: 3fa78b53a1f4bde479f8fee8b7aaae23, type: 3}
 --- !u!54 &1136400565
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12257,7 +12265,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a1c52b782f40de94ebb6a0448647d259, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e985b2bfeb5924844b296b19a1c94b07, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -15779,10 +15787,12 @@ MonoBehaviour:
   type: 1
   state: 0
   actions: 0300000002000000
+  actionSprite: []
+  canActivateSpriteOn: []
+  canActivateSpriteOff: {fileID: 0}
+  deactivatedSprite: {fileID: 0}
   InteractButton: 46
   LeverKeys: 1401000013010000
-  off: {fileID: 0}
-  on: {fileID: 0}
 --- !u!65 &2004273707
 BoxCollider:
   m_ObjectHideFlags: 0
