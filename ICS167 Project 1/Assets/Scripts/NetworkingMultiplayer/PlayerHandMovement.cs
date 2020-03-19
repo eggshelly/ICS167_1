@@ -91,7 +91,7 @@ public class PlayerHandMovement : NetworkBehaviour
             {
                 if (arm.CheckInput())
                 { 
-                    //arm.PressButton();
+                    arm.PressButton();
                     CmdCheckInput();
                     CmdPressButton(0, -1);
                     Debug.Log("Arm is over button");
@@ -105,7 +105,7 @@ public class PlayerHandMovement : NetworkBehaviour
                     int num;
                     if ((num = arm.CheckLeverPull()) >= 0)
                     {
-                        //arm.PullLever(num);
+                        arm.PullLever(num);
                         CmdPressButton(1, num);
                     }
                 }
